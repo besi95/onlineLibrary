@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_COOKIE['login_error'])){
+    $message = $_COOKIE['login_error'];
+    setcookie('login_error','',time()-3600,'/');
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +45,9 @@ MAIN CONTENT
         <form class="form-login" method="post" action="src/admin_login.php">
             <h2 class="form-login-heading">ADMIN LOGIN</h2>
             <div class="login-wrap">
+                <?php if(isset($message)){?>
+                <span style="color: red;"><?php echo $message?></span>
+                <?php } ?>
                 <input type="email" name="email" class="form-control" placeholder="Email" required>
                 <br>
                 <input type="password" name="password" class="form-control" placeholder="Password" required>
@@ -45,8 +56,6 @@ MAIN CONTENT
                     IN
                 </button>
                 <hr>
-                <span style="color: red"><?php echo isset($_COOKIE['login_error']) ?  $_COOKIE['email_error']:"";  ?></span>
-
             </div>
         </form>
 

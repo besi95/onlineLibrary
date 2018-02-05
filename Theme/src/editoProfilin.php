@@ -29,10 +29,10 @@ if (isset($_POST['submit'])) {
     if ($result) {
         $errors[] = "Perdoruesi u editua me sukses!";
         setcookie('editim_result', json_encode($errors), time() + 3600, '/');
-        header('Location: ../profili.phtml');
+        header('Location: ../profili.php');
     } else {
         $errors[] = "Editimi nuk mund te kryhet!";
         setcookie('editim_result', json_encode($errors), time() + 3600, '/');
-        header('Location: ../profili.phtml');
+        header('Location: ../profili.php');
     }
 }

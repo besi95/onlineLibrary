@@ -2,6 +2,10 @@
 session_start();
 include 'src/db_connect.php';
 
+if(!isset($_SESSION['admin_logged_in'])){
+    header('Location: login.php');
+}
+
 $komenteSql = "SELECT COUNT(koment.id) as numri FROM koment";
 $libraSql = "SELECT COUNT(liber.id) as numri FROM liber";
 $mesazheSql= "SELECT COUNT(mesazhet.id) as numri FROM mesazhet";
@@ -83,145 +87,8 @@ $njoftime = $conn->query($njoftimeSql);
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.phtml" class="logo"><b>LIBRARY NAME</b></a>
+            <a href="index.php" class="logo"><b>LIBRARY NAME</b></a>
             <!--logo end-->
-            <div class="nav notify-row" id="top_menu">
-                <!--  notification start -->
-                <ul class="nav top-menu">
-                    <!-- settings start -->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.phtml#">
-                            <i class="fa fa-tasks"></i>
-                            <span class="badge bg-theme">4</span>
-                        </a>
-                        <ul class="dropdown-menu extended tasks-bar">
-                            <div class="notify-arrow notify-arrow-green"></div>
-                            <li>
-                                <p class="green">Statistika per Sot</p>
-                            </li>
-                            <li>
-                                <a href="index.phtml#">
-                                    <div class="task-info">
-                                        <div class="desc">Libra te Rinj</div>
-                                        <div class="percent">40</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.phtml#">
-                                    <div class="task-info">
-                                        <div class="desc">Mesazhe</div>
-                                        <div class="percent">26</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="26" aria-valuemin="0" aria-valuemax="100" style="width: 26%">
-                                            <span class="sr-only">26</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.phtml#">
-                                    <div class="task-info">
-                                        <div class="desc">Komente </div>
-                                        <div class="percent">8</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width: 8%">
-                                            <span class="sr-only">8</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.phtml#">
-                                    <div class="task-info">
-                                        <div class="desc">Blerje </div>
-                                        <div class="percent">12</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%">
-                                            <span class="sr-only">12</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- settings end -->
-                    <!-- inbox dropdown start-->
-                    <li id="header_inbox_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="index.phtml#">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="badge bg-theme">5</span>
-                        </a>
-                        <ul class="dropdown-menu extended inbox">
-                            <div class="notify-arrow notify-arrow-green"></div>
-                            <li>
-                                <p class="green">Ju keni 5 mesazhe te rinj.</p>
-                            </li>
-                            <li>
-                                <a href="index.phtml#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-zac.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Besim Saraci</span>
-                                    <span class="time">Just now</span>
-                                    </span>
-                                    <span class="message">
-                                        Hi mate, how is everything?
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.phtml#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-divya.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Divya Manian</span>
-                                    <span class="time">40 mins.</span>
-                                    </span>
-                                    <span class="message">
-                                     Hi, I need your help with this.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.phtml#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-danro.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Dan Rogers</span>
-                                    <span class="time">2 hrs.</span>
-                                    </span>
-                                    <span class="message">
-                                        Love your new Dashboard.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.phtml#">
-                                    <span class="photo"><img alt="avatar" src="assets/img/ui-sherman.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Dj Sherman</span>
-                                    <span class="time">4 hrs.</span>
-                                    </span>
-                                    <span class="message">
-                                        Please, answer asap.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="index.phtml#">Shiko te gjitha mesazhet.</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- inbox dropdown end -->
-                </ul>
-                <!--  notification end -->
-            </div>
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
                     <li><a class="logout" href="src/logout.php">Logout</a></li>
@@ -239,25 +106,25 @@ $njoftime = $conn->query($njoftimeSql);
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
 
-              	  <p class="centered"><a href="profili.phtml"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+              	  <p class="centered"><a href="profili.php"><img src="assets/img/library.png" class="img-circle" width="60"></a></p>
               	  <h5 class="centered">Besim Saraci</h5>
 
                   <li class="mt">
-                      <a class="active" href="index.phtml">
+                      <a class="active" href="index.php">
                           <i class="fa fa-dashboard"></i>
                           <span>Faqja Kryesore</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
-                      <a href="gallery.phtml" >
+                      <a href="gallery.php" >
                           <i class="fa fa-book"></i>
                           <span>Menaxho Librat</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
-                      <a href="users.phtml" >
+                      <a href="users.php" >
                           <i class="fa fa-user"></i>
                           <span>Menaxho Perdorues</span>
                       </a>
@@ -271,13 +138,13 @@ $njoftime = $conn->query($njoftimeSql);
                   </li>
 
                   <li class="sub-menu">
-                      <a href="komentet.phtml" >
+                      <a href="komentet.php" >
                           <i class="fa fa-cogs"></i>
                           <span>Komentet</span>
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="mesazhet.phtml" >
+                      <a href="mesazhet.php" >
                           <i class="fa fa-book"></i>
                           <span>Mesazhet</span>
                       </a>
@@ -289,7 +156,7 @@ $njoftime = $conn->query($njoftimeSql);
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="profili.phtml" >
+                      <a href="profili.php" >
                           <i class="fa fa-user-md"></i>
                           <span>Profili</span>
                       </a>
@@ -324,7 +191,7 @@ $njoftime = $conn->query($njoftimeSql);
 					  			<span class="li_stack"></span>
 					  			<h3><?php echo $mesazhe['numri']?></h3>
                   			</div>
-                            <p>Ju keni <?php echo $mesazhe['numri']?> mesazhe te derguara ne inbox. <a class="hide-link" href="mesazhet.phtml">Mesazhet</a></p>
+                            <p>Ju keni <?php echo $mesazhe['numri']?> mesazhe te derguara ne inbox. <a class="hide-link" href="mesazhet.php">Mesazhet</a></p>
                   		</div>
                   		<div class="col-md-4 col-sm-4 box0">
                   			<div class="box1">
@@ -432,7 +299,7 @@ $njoftime = $conn->query($njoftimeSql);
       <footer class="site-footer">
           <div class="text-center">
               2018 - B-3A
-              <a href="index.phtml#" class="go-top">
+              <a href="index.php#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>
           </div>

@@ -4,5 +4,5 @@ $userId = $_GET['userId'];
 
 $deleteSql = "DELETE FROM user WHERE id ='{$userId}'";
 $result = $conn->query($deleteSql);
-header('Location: ../users.phtml');
+header('Location: ../users.php');
 ?>

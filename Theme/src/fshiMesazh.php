@@ -4,5 +4,5 @@ $mesazhId = $_GET['mesazhId'];
 
 $deleteSql = "DELETE from mesazhet WHERE id ='{$mesazhId}'";
 $result = $conn->query($deleteSql);
-header('Location: ../mesazhet.phtml');
+header('Location: ../mesazhet.php');
 ?>

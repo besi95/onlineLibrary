@@ -35,11 +35,11 @@ if ($result) {
         $errors[] = "Imazhi i librit nuk mund te uploadohet.";
     }
     setcookie('shtim_success', 'Libri u shtua me sukses!', time() + 3600, '/');
-    header('Location: ../gallery.phtml');
+    header('Location: ../gallery.php');
 } else {
     $errors[] = "Shtimi i librit nuk mund te kryhet. Provoni perseri.";
     setcookie('shtimi_errors', json_encode($errors), time() + 3600, '/');
-    header('Location: ../editoLiber.phtml?liberId=new');
+    header('Location: ../editoLiber.php?liberId=new');
 
 }
 

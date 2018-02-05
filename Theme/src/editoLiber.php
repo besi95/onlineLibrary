@@ -40,11 +40,11 @@ editoAutoret($autoret, $liberId, $conn);
 
 if ($result && $uploadStatus) {
     setcookie('editim_success', 'Libri u shtua me sukses!', time() + 3600, '/');
-    header('Location: ../editoLiber.phtml?liberId=' . $liberId);
+    header('Location: ../editoLiber.php?liberId=' . $liberId);
 } else {
     $errors[] = "Editimi i librit nuk mund te kryhet. Provoni perseri.";
     setcookie('editim_errors', json_encode($errors), time() + 3600, '/');
-    header('Location: ../editoLiber.phtml?liberId=' . $liberId);
+    header('Location: ../editoLiber.php?liberId=' . $liberId);
 
 }
 
