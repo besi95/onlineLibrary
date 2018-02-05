@@ -1,7 +1,11 @@
 <?php
+session_start();
 include "src/db_connect.php";
+if(!isset($_GET['bookId'])){
+    header('Location: index.php');
+}
 $liberId = $_GET['bookId'];
-
+$userId = $_SESSION['usr_logged_in'];
 //merr librin nga databasa
 $liberSql = "SELECT * from liber WHERE id='{$liberId}'";
 $result = $conn->query($liberSql);
@@ -133,9 +137,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                              src="../Theme/imazhe/<?php echo $libri['liber_image'] ?>" alt=" "/>
                     </div>
                     <div class="col-md-7 book-page">
+                        <?php if($libri['stock'] > 0){?>
                         <div  class="more">
                             <a style="width: 200px" href="checkout.php?bookId=<?php echo $libri['id']?>" class="hvr-bounce-to-bottom sint">BLI Librin </a>
                         </div>
+                        <?php }else{?>
+                            <span style="color:red">Libri nuk eshte ne stok per momentin.</span>
+                        <?php }?>
                         <p><b>Cmimi:</b><?php echo $libri['price'] . ' $' ?></p>
                         <p><b>Pershkrimi:</b><br><?php echo $libri['description'] ?></p>
                         <p><b>Shtepia Botuese:</b><?php echo $libri['publisher'] ?></p>
@@ -186,15 +194,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="artical-commentbox">
                         <h3>Lini nje Koment</h3>
                         <div class="table-form">
-                            <form>
-                                <input type="text" style="width: 46%; display: inline" class="textbox" name="emri"
-                                       value="Emri" onfocus="this.value = '';"
-                                       onblur="if (this.value == '') {this.value = 'Name';}">
-                                <input type="text" style="width: 46%; display: inline" class="textbox" email="email"
-                                       value="Email" onfocus="this.value = '';"
-                                       onblur="if (this.value == '') {this.value = 'Email';}">
-                                <textarea onfocus="this.value = '';"
-                                          onblur="if (this.value == '') {this.value = 'Mesazhi';}">Mesazhi</textarea>
+                            <form method="post">
+                               <textarea name="mesazhi" required="required">Mesazhi</textarea>
                                 <input type="submit" name="submit" value="Komento">
                             </form>
                         </div>
@@ -210,7 +211,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- footer -->
     <div class="footer-bottom">
         <div class="container">
-            <p>© 2018 Quickly. All rights reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
+            <p>© 2018 All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
         </div>
     </div>
     <!-- //footer -->
@@ -219,3 +220,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //for bootstrap working -->
 </body>
 </html>
+
+<?php
+if(isset($_POST['submit'])){
+
+    $mesazhi = $_POST['mesazhi'];
+    $insertQuery = "INSERT INTO `koment` (`text`, `is_approved`, `user_id`, `liber_id`) 
+                  VALUES ('{$mesazhi}', '0', '{$userId}', '{$liberId}');";
+    $result = $conn->query($insertQuery);
+    header('Location: single.php');
+
+}
+?>

@@ -1,9 +1,21 @@
-﻿<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+﻿<?php
+include "src/db_connect.php";
+
+if(isset($_POST['submit']))
+{
+    $emri= $_POST['emri'];
+    $email= $_POST['email'];
+    $mesazhi= $_POST['mesazhi'];
+
+    $sql = "INSERT INTO mesazhet (name,sent_from, permbajtja) 
+            VALUES ('$emri','$email', '$mesazhi')" ;
+    $result = $conn->query($sql);
+    header("location:contact.php");
+
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,16 +114,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="contact-left1">
 			<h3>Na kontaktoni <span>Keni pyetje</span></h3>
 			<div class="in-left">
-				<form>
-					<input type="text" placeholder="Emri juaj:" required=" ">
-					<input type="text" placeholder="Numri i telefonit:" required=" ">
-					<input type="text" placeholder="E-mail:" required=" ">
-				</form>
+				<form method="post">
+					Emri:<input type="text" name="emri" placeholder="Emri juaj:" required>
+                    <br>
+                    <br>
+					Email:<input type="text" name="email" placeholder="E-mail:" required>
 			</div>
 			<div class="in-right">
-				<form>
-					<textarea placeholder="Mesazhi:" required=" "></textarea>
-					<input type="submit" value="Dergo">
+					Mesazhi:<textarea name="mesazhi" placeholder="Mesazhi:" required="required"></textarea>
+					<input type="submit" name="submit" value="Dergo">
 				</form>
 			</div>
 			<div class="clearfix"> </div>

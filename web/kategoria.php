@@ -116,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <?php while ($liber = $libra->fetch_assoc()){?>
                     <div class="col-md-4">
                         <img style=";height: 500px;" src="../Theme/imazhe/<?php echo $liber['liber_image']?>" alt=" " class="img-responsive" />
-                        <p><b><?php echo $liber['title']?></b></br>
+                        <p style="text-align: justify;"><b><?php echo $liber['title']?></b></br>
                             <?php echo $liber['description']?>
                             </br>
                             <b>Cmimi: </b><?php echo $liber['price'].'$'?><br>
@@ -126,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 echo $autori. ' ';
                             }
                             ?>
-                        </p>
+                        </p><br><br>
                         <div style="margin:0" class="more">
                             <a href="single.php?bookId=<?php echo $liber['id']?>" class="hvr-bounce-to-bottom sint">Shiko Librin </a>
                         </div>
