@@ -23,7 +23,7 @@ $autoret =array();
 while($autori = $autor->fetch_assoc()){
     $autoret[] = $autori['id'];
 }
-;
+
 $allAuthorsSql = "SELECT concat(firstname,' ',lastname) AS emri,id FROM autor";
 $allAuthors = $conn->query($allAuthorsSql);
 

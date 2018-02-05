@@ -552,7 +552,7 @@ background: url(../images/3.png) no-repeat -66px 0px;
 	text-align: left;
 }
 .more a{
-	padding: 18px 46px 21px 20px;
+	padding: 8px 90px 33px 20px;
 	color: #fff;
 	background: url(../images/img-sp.png) no-repeat 71px -194px #c34c21;
 	display: block;
@@ -560,7 +560,7 @@ background: url(../images/3.png) no-repeat -66px 0px;
 	height: 25px;
 	text-decoration: none;
 	font-size: 14px;
-	margin: 0 0 0 11em;
+	margin: 0 15%;
 	font-family: LobsterTwo-Regular;
 }
 a.sint:before{
@@ -1580,6 +1580,7 @@ p.lom{
 	font-size: 14px;
 	line-height: 1.8em;
 	margin: 1em 0;
+
 }
 /*---comment-box----*/
 .table-form{
@@ -1684,7 +1685,7 @@ p.lom{
 	margin: 1.5em 0;
 	background: #eee;
 	padding: 2em;
-	width: 70%;
+	width: 100%;
 }
 .blog-top p {
 	font-size: 1em;
@@ -1702,7 +1703,7 @@ p.lom{
   display: inline-block;
 }
 .single-page-artical {
-  min-height: 2280px;
+  /*min-height: 2280px;*/
 }
 .navbar-collapse {
   padding-right: 0;
@@ -2693,4 +2694,19 @@ p.lom{
 	.login-grids {
 	  padding: 1.5em 0 0;
 	}
-}	
+}
+.custom-header-kat {
+	text-align: center;
+	padding-top: 50px;
+	border-bottom: 3px dotted #00e16a;
+	color: #9e521b;
+	padding-bottom: 10px;
+}
+.single-liber-img {
+	width:500px;
+	height:500px;
+
+}
+.book-page {
+	padding: 10em 0 1.5em;
+}

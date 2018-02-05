@@ -15,7 +15,7 @@ setcookie('registration_success',"",time()-3600,'/');
 <!DOCTYPE html>
 <html>
 <head>
-<title>Adrion | Library</title>
+<title>Login</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -135,7 +135,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div class="footer-bottom">
 		<div class="container">
-			<p>© 2015 Quickly. All rights reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
+			<p>© 2018 All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
 		</div>
 	</div>
 <!-- //footer -->

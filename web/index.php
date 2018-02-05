@@ -1,13 +1,11 @@
-﻿<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+﻿<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Library</title>
+<title>Adrion Library</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -453,7 +451,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //for bootstrap working -->
 <div class="footer-bottom">
 <div class="container">
-			<p>© 2018 Quickly. All rights reserved | Design by <a href="/sie/web/index.php"> Adrion Library</a></p>
+			<p>© 2018 All rights reserved | Design by <a href="/sie/web/index.php"> Adrion Library</a></p>
 		</div>
 </div>
 </body>

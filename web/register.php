@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php session_start();
 $errors = array();
 if(isset($_COOKIE['registration_error'])) {
@@ -15,7 +9,7 @@ if(isset($_COOKIE['registration_error'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Adrion | Regjistrim</title>
+    <title>Regjistrohu</title>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -211,7 +205,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div class="footer-bottom">
     <div class="container">
-        <p>© 2015 Quickly. All rights reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
+        <p>© 2018  All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
     </div>
 </div>
 <!-- //footer -->

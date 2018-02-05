@@ -61,25 +61,9 @@
 }
 
 .ch-img-1 { 
-	background-image: url(../images/comedy.jpg);
+	background-image: url(../images/categoryBook.jpg);
 }
 
-.ch-img-2 { 
-	background-image: url(../images/dram.jpg);
-}
-
-.ch-img-3 { 
-	background-image: url(../images/poems.jpg);
-}
-.ch-img-4 { 
-	background-image: url(../images/tragedy.jpg);
-}
-.ch-img-5 { 
-	background-image: url(../images/letruse.jpg);
-}
-.ch-img-6{ 
-	background-image: url(../images/historik.jpg);
-}
 .ch-info h3 {
 	color: #fff;
 	text-transform: uppercase;
@@ -152,4 +136,11 @@
 	
 	opacity: 1;
 	pointer-events: auto;
+}
+.custom-header-kat {
+	text-align: center;
+	padding-top: 50px;
+	border-bottom: 3px dotted #00e16a;
+	color: #9e521b;
+	padding-bottom: 10px;
 }

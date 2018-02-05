@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<title>Rreth Nesh :: w3layouts</title>
+<title>Rreth Nesh </title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -130,7 +130,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //for bootstrap working -->
 <div class="footer-bottom">
 <div class="container">
-			<p>© 2018 Quickly. All rights reserved | Design by <a href="/sie/web/index.php"> Adrion Library</a></p>
+			<p>© 2018 All rights reserved | Design by <a href="/sie/web/index.php"> Adrion Library</a></p>
 		</div>
 </body>
 </html>
