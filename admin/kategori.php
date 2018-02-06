@@ -1,13 +1,12 @@
 <?php
 session_start();
-include 'src/db_connect.php';
-
 if(!isset($_SESSION['admin_logged_in'])){
     header('Location: login.php');
 }
+include 'src/db_connect.php';
+$categorySql = "SELECT * FROM categories";
+$categories = $conn->query($categorySql);
 
-$mesazhetSql = "SELECT * FROM mesazhet";
-$mesazhet = $conn->query($mesazhetSql);
 
 ?>
 <!DOCTYPE html>
@@ -19,20 +18,22 @@ $mesazhet = $conn->query($mesazhetSql);
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>LIBRARIA-Mesazhet</title>
+    <title>LIBRARIA-Kategorite</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
-    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
+          type='text/css'>
+
 
     <script src="assets/js/chart-master/Chart.js"></script>
 
@@ -41,11 +42,12 @@ $mesazhet = $conn->query($mesazhetSql);
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
 
 <body>
 
-<section id="container" >
+<section id="container">
     <!-- **********************************************************************************************************************************************************
     TOP BAR CONTENT & NOTIFICATIONS
     *********************************************************************************************************************************************************** -->
@@ -55,7 +57,7 @@ $mesazhet = $conn->query($mesazhetSql);
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <!--logo start-->
-        <a href="index.php" class="logo"><b>LIBRARY NAME</b></a>
+        <a href="index.php" class="logo"><b>ADRION LIBRARY</b></a>
         <!--logo end-->
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
@@ -70,12 +72,13 @@ $mesazhet = $conn->query($mesazhetSql);
     *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
     <aside>
-        <div id="sidebar"  class="nav-collapse ">
+        <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
 
-                <p class="centered"><a href="profili.php"><img src="assets/img/library.png" class="img-circle" width="60"></a></p>
-                <h5 class="centered">Besim Saraci</h5>
+                <p class="centered"><a href="profili.php"><img src="assets/img/library.png" class="img-circle"
+                                                               width="60"></a></p>
+                <h5 class="centered"><?php echo $_SESSION['admin_name'] ?></h5>
 
                 <li class="mt">
                     <a href="index.php">
@@ -85,45 +88,52 @@ $mesazhet = $conn->query($mesazhetSql);
                 </li>
 
                 <li class="sub-menu">
-                    <a href="gallery.php" >
+                    <a href="gallery.php">
                         <i class="fa fa-book"></i>
                         <span>Menaxho Librat</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="users.php" >
+                    <a href="users.php">
                         <i class="fa fa-user"></i>
                         <span>Menaxho Perdorues</span>
                     </a>
                 </li>
+                <li class="sub-menu">
+                    <a href="blerjet.php" >
+                        <i class="fa fa-dollar"></i>
+                        <span>Menaxho Porosite</span>
+                    </a>
+                </li>
 
                 <li class="sub-menu">
-                    <a  href="kategori.php" >
+                    <a class="active" href="kategori.php">
                         <i class="fa fa-book"></i>
                         <span>Kategorite</span>
                     </a>
                 </li>
+
                 <li class="sub-menu">
-                    <a href="komentet.php" >
+                    <a href="komentet.php">
                         <i class="fa fa-cogs"></i>
                         <span>Komentet</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a class="active" href="mesazhet.php" >
+                    <a href="mesazhet.php">
                         <i class="fa fa-book"></i>
                         <span>Mesazhet</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="chartjs.php" >
+                    <a href="chartjs.php">
                         <i class="fa fa-bar-chart-o"></i>
                         <span>Raporte</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="profili.php" >
+                    <a href="profili.php">
                         <i class="fa fa-user-md"></i>
                         <span>Profili</span>
                     </a>
@@ -143,52 +153,69 @@ $mesazhet = $conn->query($mesazhetSql);
         <section class="wrapper">
 
             <!--main content start-->
-            <h3><i class="fa fa-angle-right"></i> MESAZHET</h3>
+            <h3><i class="fa fa-angle-right"></i> MENAXHO KATEGORITE</h3>
             <div class="row mt">
                 <div class="col-lg-12">
                     <div class="content-panel">
-                        <h4><i class="fa fa-angle-right"></i> Mesazhet</h4>
+                        <h4><i class="fa fa-angle-right"></i> Kategorite</h4>
                         <section id="unseen">
-                            <br>
-                            <br>
-
-                                <div class="panel panel-default panel-table">
-                                    <div class="panel-body">
-                                        <table class="table table-striped table-bordered table-list">
-                                            <thead>
+                            <br><br>
+                            <div class="panel panel-default panel-table">
+                                <div class="panel-body">
+                                    <table class="table table-striped table-bordered table-list">
+                                        <thead>
+                                        <tr>
+                                            <th class="hidden-xs">NR #</th>
+                                            <th>Kategoria</th>
+                                            <th style="text-align: center"><em class="fa fa-cog"></em></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php while ($kategori = $categories->fetch_assoc()) { ?>
                                             <tr>
-                                                <th class="hidden-xs">NR #</th>
-                                                <th>Permbajtja</th>
-                                                <th>Emri</th>
-                                                <th>Email</th>
-                                                <th>Data e Dergimit</th>
-                                                <th style="text-align: center"><em class="fa fa-cog"></em></th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <?php while($mesazhi =$mesazhet->fetch_assoc()){
-                                            ?>
-                                            <tr>
-                                                <td style="text-align: center" class="hidden-xs"><?php echo $mesazhi['id']?></td>
-                                                <td><?php echo $mesazhi['permbajtja']?></td>
-                                                <td><?php echo $mesazhi['name']?></td>
-                                                <td><?php echo $mesazhi['sent_from']?></td>
-                                                <td><?php echo $mesazhi['date']?></td>
+                                                <td style="text-align: center"
+                                                    class="hidden-xs"><?php echo $kategori['id'] ?></td>
+                                                <td><?php echo $kategori['category_name'] ?></td>
                                                 <td align="center">
-                                                    <a href="src/fshiMesazh.php?mesazhId=<?php echo $mesazhi['id']?>" class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                                    <a href="src/fshiKategori.php?categoryId=<?php echo $kategori['id'] ?>"
+                                                       class="btn btn-danger"><em class="fa fa-trash"></em></a>
                                                 </td>
                                             </tr>
-                                            <?php } ?>
-                                            </tbody>
-                                        </table>
+                                        <?php } ?>
+                                        </tbody>
+                                    </table>
 
-                                    </div>
                                 </div>
+                            </div>
                         </section>
                     </div><!-- /content-panel -->
                 </div><!-- /col-lg-4 -->
             </div><!-- /row -->
 
+            <div class="row mt">
+                <div class=" cart-form col-md-12">
+                        <h4 class="title"> Shto Kategori</h4>
+                    <br>
+                    <div class="content">
+                        <form method="post" action="src/shtoKategori.php">
+                            <div class="col-md-4">
+                                <div class="form-group input-forma ">
+                                    <label>Emërtimi</label>
+                                    <input type="text" name="emer_kategoria" class="form-control border-input">
+
+                                </div>
+                            </div>
+
+                            <div style="padding-top: 20px;">
+                                <button type="submit" class="btn btn-info btn-fill btn-wd">Shto Kategorine</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
             </div><!-- /col-lg-9 END SECTION MIDDLE -->
 
         </section>
@@ -198,8 +225,7 @@ $mesazhet = $conn->query($mesazhetSql);
     <!--footer start-->
     <footer class="site-footer">
         <div class="text-center">
-            2014 - Alvarez.is
-            <a href="index.php#" class="go-top">
+            &copy; 2018 all the rights reserved by Adrion Library.            <a href="index.php#" class="go-top">
                 <i class="fa fa-angle-up"></i>
             </a>
         </div>
@@ -249,7 +275,7 @@ $mesazhet = $conn->query($mesazhetSql);
             },
             legend: [
                 {type: "text", label: "Special event", badge: "00"},
-                {type: "block", label: "Regular event", }
+                {type: "block", label: "Regular event",}
             ]
         });
     });

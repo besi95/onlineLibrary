@@ -115,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="row liber-faqe">
                     <?php while ($liber = $libra->fetch_assoc()){?>
                     <div class="col-md-3 liber-item">
-                        <img style=";height: 300px;padding-left: 10%" src="../Theme/imazhe/<?php echo $liber['liber_image']?>" alt=" " class="img-responsive" />
+                        <img style=";height: 300px;padding-left: 10%" src="../admin/imazhe/<?php echo $liber['liber_image']?>" alt=" " class="img-responsive" />
                         <p style="text-align: justify;"><b><span class="styled-title"><?php echo $liber['title']?></span></b></br>
                             <?php echo substr($liber['description'],0,200).' ...'?>
                             </br>

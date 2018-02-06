@@ -93,7 +93,7 @@ while($autorT = $allAuthors->fetch_assoc()){
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <!--logo start-->
-        <a href="index.php" class="logo"><b>LIBRARY NAME</b></a>
+        <a href="index.php" class="logo"><b>ADRION LIBRARY</b></a>
         <!--logo end-->
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
@@ -114,7 +114,7 @@ while($autorT = $allAuthors->fetch_assoc()){
 
                 <p class="centered"><a href="profili.php"><img src="assets/img/library.png" class="img-circle"
                                                                width="60"></a></p>
-                <h5 class="centered">Besim Saraci</h5>
+                <h5 class="centered"><?php echo $_SESSION['admin_name'] ?></h5>
 
                 <li class="mt">
                     <a href="index.php">
@@ -134,6 +134,12 @@ while($autorT = $allAuthors->fetch_assoc()){
                     <a href="users.php">
                         <i class="fa fa-user"></i>
                         <span>Menaxho Perdorues</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="blerjet.php" >
+                        <i class="fa fa-dollar"></i>
+                        <span>Menaxho Porosite</span>
                     </a>
                 </li>
 
@@ -361,8 +367,7 @@ while($autorT = $allAuthors->fetch_assoc()){
     <!--footer start-->
     <footer class="site-footer">
         <div class="text-center">
-            2014 - Alvarez.is
-            <a href="index.php#" class="go-top">
+            &copy; 2018 all the rights reserved by Adrion Library.            <a href="index.php#" class="go-top">
                 <i class="fa fa-angle-up"></i>
             </a>
         </div>

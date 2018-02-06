@@ -1,13 +1,14 @@
 <?php
 session_start();
-include 'src/db_connect.php';
-
 if(!isset($_SESSION['admin_logged_in'])){
     header('Location: login.php');
 }
+include 'src/db_connect.php';
+$komentSql = "SELECT *,koment.is_approved AS approved,koment.id AS nr FROM koment 
+              INNER JOIN liber ON koment.liber_id = liber.id
+              INNER JOIN user ON user.id = koment.user_id";
+$komentet = $conn->query($komentSql);
 
-$userSql = "SELECT * FROM user WHERE role='0'";
-$users = $conn->query($userSql);
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +20,7 @@ $users = $conn->query($userSql);
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>LIBRARIA-Menaxho Perdorues</title>
+    <title>LIBRARIA-Komentet</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -42,6 +43,7 @@ $users = $conn->query($userSql);
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
 
 <body>
@@ -56,7 +58,7 @@ $users = $conn->query($userSql);
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <!--logo start-->
-        <a href="index.php" class="logo"><b>LIBRARY NAME</b></a>
+        <a href="index.php" class="logo"><b>ADRION LIBRARY</b></a>
         <!--logo end-->
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
@@ -76,7 +78,7 @@ $users = $conn->query($userSql);
             <ul class="sidebar-menu" id="nav-accordion">
 
                 <p class="centered"><a href="profili.php"><img src="assets/img/library.png" class="img-circle" width="60"></a></p>
-                <h5 class="centered">Besim Saraci</h5>
+                <h5 class="centered"><?php echo $_SESSION['admin_name'] ?></h5>
 
                 <li class="mt">
                     <a href="index.php">
@@ -91,21 +93,28 @@ $users = $conn->query($userSql);
                         <span>Menaxho Librat</span>
                     </a>
                 </li>
+
                 <li class="sub-menu">
-                    <a class="active" href="users.php" >
+                    <a href="users.php" >
                         <i class="fa fa-user"></i>
                         <span>Menaxho Perdorues</span>
                     </a>
                 </li>
-
+                <li class="sub-menu">
+                    <a href="blerjet.php" >
+                        <i class="fa fa-dollar"></i>
+                        <span>Menaxho Porosite</span>
+                    </a>
+                </li>
                 <li class="sub-menu">
                     <a  href="kategori.php" >
                         <i class="fa fa-book"></i>
                         <span>Kategorite</span>
                     </a>
                 </li>
+
                 <li class="sub-menu">
-                    <a href="komentet.php" >
+                    <a class="active" href="komentet.php" >
                         <i class="fa fa-cogs"></i>
                         <span>Komentet</span>
                     </a>
@@ -142,54 +151,54 @@ $users = $conn->query($userSql);
     <section id="main-content">
         <section class="wrapper">
 
-                    <!--main content start-->
-                    <h3><i class="fa fa-angle-right"></i> MENAXHO PERDORUES</h3>
-                    <div class="row mt">
-                        <div class="col-lg-12">
-                            <div class="content-panel">
-                                <h4><i class="fa fa-angle-right"></i> Perdorues</h4>
-                                <section id="unseen">
-                                    <br><br>
-                                    <div class="panel panel-default panel-table">
-                                        <div class="panel-body">
-                                            <table class="table table-striped table-bordered table-list">
-                                                <thead>
-                                                <tr>
-                                                    <th class="hidden-xs">NR #</th>
-                                                    <th>Emri</th>
-                                                    <th>Mbiemri</th>
-                                                    <th>Username</th>
-                                                    <th>Email</th>
-                                                    <th>Statusi</th>
-                                                    <th style="text-align: center"><em class="fa fa-cog"></em></th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php while($user=$users->fetch_assoc()){?>
-                                                <tr>
-                                                    <td style="text-align: center" class="hidden-xs"><?php echo $user['id'] ?></td>
-                                                    <td><?php echo $user['name'] ?></td>
-                                                    <td><?php echo $user['lastname'] ?></td>
-                                                    <td><?php echo $user['username'] ?></td>
-                                                    <td><?php echo $user['email']?></td>
-                                                    <td><?php echo $user['is_approved']== '1'?'Aprovuar':'Pa-Aprovuar' ?></td>
-                                                    <td align="center">
-                                                        <a href="src/aprovoUser.php?userId=<?php echo $user['id'] ?>" class="btn btn-default"><em alt="" class="fa fa-check"></em></a>
-                                                        <a href="src/fshiUser.php?userId=<?php echo $user['id'] ?>" class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                                                    </td>
-                                                </tr>
-                                                <?php }?>
-                                                </tbody>
-                                            </table>
+            <!--main content start-->
+            <h3><i class="fa fa-angle-right"></i> MENAXHO KOMENTE</h3>
+            <div class="row mt">
+                <div class="col-lg-12">
+                    <div class="content-panel">
+                        <h4><i class="fa fa-angle-right"></i> Komentet</h4>
+                        <section id="unseen">
+                            <br><br>
+                            <div class="panel panel-default panel-table">
+                                <div class="panel-body">
+                                    <table class="table table-striped table-bordered table-list">
+                                        <thead>
+                                        <tr>
+                                            <th class="hidden-xs">NR #</th>
+                                            <th>Permbajtja</th>
+                                            <th>Libri</th>
+                                            <th>Emri Userit</th>
+                                            <th>Email</th>
+                                            <th>Statusi</th>
+                                            <th style="text-align: center"><em class="fa fa-cog"></em></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php while($koment = $komentet->fetch_assoc()){?>
+                                        <tr>
+                                            <td style="text-align: center" class="hidden-xs"><?php echo $koment['nr'] ?></td>
+                                            <td><?php echo $koment['text'] ?></td>
+                                            <td><?php echo $koment['title']?></td>
+                                            <td><?php echo $koment['name'].' '.$koment['lastname']?></td>
+                                            <td><?php echo $koment['email']?></td>
+                                            <td><?php echo $koment['approved']=='1'? "<span class='label label-success'>Aprovuar</span>": "<span class='label label-danger'>Pa-Aprovuar</span>"?></td>
+                                            <td align="center">
+                                                <a href="src/aprovoKoment.php?komentId=<?php echo $koment['nr']?>" class="btn btn-default"><em alt="" class="fa fa-check"></em></a>
+                                                <a href="src/fshiKoment.php?komentId=<?php echo $koment['nr'] ?>" class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                        </tbody>
+                                    </table>
 
-                                        </div>
-                                    </div>
-                                </section>
-                            </div><!-- /content-panel -->
-                        </div><!-- /col-lg-4 -->
-                    </div><!-- /row -->
+                                </div>
+                            </div>
+                        </section>
+                    </div><!-- /content-panel -->
+                </div><!-- /col-lg-4 -->
+            </div><!-- /row -->
 
-                </div><!-- /col-lg-9 END SECTION MIDDLE -->
+            </div><!-- /col-lg-9 END SECTION MIDDLE -->
 
         </section>
     </section>
@@ -198,8 +207,7 @@ $users = $conn->query($userSql);
     <!--footer start-->
     <footer class="site-footer">
         <div class="text-center">
-            2018 - B-3A
-            <a href="index.php#" class="go-top">
+            &copy; 2018 all the rights reserved by Adrion Library.            <a href="index.php#" class="go-top">
                 <i class="fa fa-angle-up"></i>
             </a>
         </div>

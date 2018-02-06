@@ -87,7 +87,7 @@ $njoftime = $conn->query($njoftimeSql);
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.php" class="logo"><b>LIBRARY NAME</b></a>
+            <a href="index.php" class="logo"><b>Adrion Library</b></a>
             <!--logo end-->
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
@@ -107,7 +107,7 @@ $njoftime = $conn->query($njoftimeSql);
               <ul class="sidebar-menu" id="nav-accordion">
 
               	  <p class="centered"><a href="profili.php"><img src="assets/img/library.png" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Besim Saraci</h5>
+              	  <h5 class="centered"><?php echo $_SESSION['admin_name'] ?></h5>
 
                   <li class="mt">
                       <a class="active" href="index.php">
@@ -127,6 +127,12 @@ $njoftime = $conn->query($njoftimeSql);
                       <a href="users.php" >
                           <i class="fa fa-user"></i>
                           <span>Menaxho Perdorues</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="blerjet.php" >
+                          <i class="fa fa-dollar"></i>
+                          <span>Menaxho Porosite</span>
                       </a>
                   </li>
 
@@ -218,7 +224,7 @@ $njoftime = $conn->query($njoftimeSql);
 									<div class="col-sm-6 col-xs-6"></div>
 	                      		</div>
 	                      		<div class="centered">
-										<img src="http://cobbhabitatfamilies.files.wordpress.com/2010/02/books.png" width="120">
+										<img src="assets/img/reading-2.png" width="120">
 	                      		</div>
                                 <div class="centered">
                                     <p><?php echo $bestBook['title']?></p>
@@ -232,7 +238,7 @@ $njoftime = $conn->query($njoftimeSql);
 								<div class="white-header">
 									<h5>PERDORUESI ME I MIRE</h5>
 								</div>
-								<p><img src="assets/img/ui-zac.jpg" class="img-circle" width="80"></p>
+								<p><img src="assets/img/loyalty.png" class="img-circle" width="80"></p>
 								<p><b><?php echo $bestUser['emri']?></b></p>
 								<div class="row">
 									<div class="col-md-6">
@@ -298,7 +304,7 @@ $njoftime = $conn->query($njoftimeSql);
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-              2018 - B-3A
+              &copy; 2018 all the rights reserved by Adrion Library.
               <a href="index.php#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>

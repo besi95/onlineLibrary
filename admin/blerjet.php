@@ -1,20 +1,15 @@
 <?php
 session_start();
-include 'src/db_connect.php';
 
-if(!isset($_SESSION['admin_logged_in'])){
+if (!isset($_SESSION['admin_logged_in'])) {
     header('Location: login.php');
 }
+include 'src/db_connect.php';
 
-if(isset($_COOKIE['editim_result'])){
-    $results = json_decode($_COOKIE['editim_result']);
-    setcookie('editim_result', '', time() - 3600, '/');
-}
-
-$userEmail = $_SESSION['admin_email'];
-$userSql = "SELECT * FROM user WHERE email = '{$userEmail}'";
-$user = $conn->query($userSql);
-$user=$user->fetch_assoc();
+$blerjeSql = "SELECT *,blerje.id AS blerje_id,concat(user.name,' ',user.lastname) AS emri_bleresit FROM `blerje` 
+              INNER JOIN liber ON liber.id = blerje.liber_id
+              INNER JOIN user ON user.id = blerje.user_id";
+$blerje = $conn->query($blerjeSql);
 
 
 ?>
@@ -24,10 +19,9 @@ $user=$user->fetch_assoc();
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <meta name="author" content="Besim Saraci">
 
-    <title>LIBRARIA-Profili</title>
+    <title>LIBRARIA-Blerjet</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -40,6 +34,9 @@ $user=$user->fetch_assoc();
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
+          type='text/css'>
+
 
     <script src="assets/js/chart-master/Chart.js"></script>
 
@@ -48,11 +45,7 @@ $user=$user->fetch_assoc();
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-        input[type="date"] {
-            line-height:inherit;
-        }
-    </style>
+
 </head>
 
 <body>
@@ -67,11 +60,11 @@ $user=$user->fetch_assoc();
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <!--logo start-->
-        <a href="index.php" class="logo"><b>LIBRARY NAME</b></a>
+        <a href="index.php" class="logo"><b>ADRION LIBRARY</b></a>
         <!--logo end-->
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="src/logout.php">Logout</a></li>
+                <li><a class="logout" href="login.php">Logout</a></li>
             </ul>
         </div>
     </header>
@@ -88,7 +81,7 @@ $user=$user->fetch_assoc();
 
                 <p class="centered"><a href="profili.php"><img src="assets/img/library.png" class="img-circle"
                                                                width="60"></a></p>
-                <h5 class="centered">Besim Saraci</h5>
+                <h5 class="centered"><?php echo $_SESSION['admin_name'] ?></h5>
 
                 <li class="mt">
                     <a href="index.php">
@@ -110,13 +103,20 @@ $user=$user->fetch_assoc();
                         <span>Menaxho Perdorues</span>
                     </a>
                 </li>
+                <li class="sub-menu">
+                    <a class="active" href="blerjet.php">
+                        <i class="fa fa-dollar"></i>
+                        <span>Menaxho Porosite</span>
+                    </a>
+                </li>
 
                 <li class="sub-menu">
-                    <a  href="kategori.php" >
+                    <a href="kategori.php">
                         <i class="fa fa-book"></i>
                         <span>Kategorite</span>
                     </a>
                 </li>
+
                 <li class="sub-menu">
                     <a href="komentet.php">
                         <i class="fa fa-cogs"></i>
@@ -136,7 +136,7 @@ $user=$user->fetch_assoc();
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a class="active" href="profili.php">
+                    <a href="profili.php">
                         <i class="fa fa-user-md"></i>
                         <span>Profili</span>
                     </a>
@@ -156,88 +156,64 @@ $user=$user->fetch_assoc();
         <section class="wrapper">
 
             <!--main content start-->
-            <h3><i class="fa fa-angle-right"></i> EDITO PROFILIN</h3>
+            <h3><i class="fa fa-angle-right"></i> MENAXHO POROSITE</h3>
             <div class="row mt">
-                <!-- left column -->
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="text-center">
-                        <img src="<?php echo 'imazhe/'.$user['user_image']?>" class="avatar img-circle img-thumbnail"
-                             alt="avatar">
-                    </div>
-                </div>
-                <!-- edit form column -->
-                <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-                    <?php
-                    foreach($results as $result) {
-                        ?>
-                        <span style="color: #557eff;"><?php echo $result ?></span><br>
-                        <?php
-                    }?>
-                    <h3>Informacioni Personal</h3>
-                    <form class="form-horizontal" role="form" method="post" action="src/editoProfilin.php">
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Emri:</label>
-                            <div class="col-lg-8">
-                                <input class="form-control" name="emri" value="<?php echo $user['name']?>" type="text">
+                <div class="col-lg-12">
+                    <div class="content-panel">
+                        <h4><i class="fa fa-angle-right"></i> Porosite</h4>
+                        <section id="unseen">
+                            <br><br>
+                            <div class="panel panel-default panel-table">
+                                <div class="panel-body">
+                                    <table class="table table-striped table-bordered table-list">
+                                        <thead>
+                                        <tr>
+                                            <th class="hidden-xs">NR #</th>
+                                            <th>Klienti</th>
+                                            <th>Libri Blere</th>
+                                            <th>Data e Blerjes</th>
+                                            <th>Statusi</th>
+                                            <th style="text-align: center"><em class="fa fa-cog"></em></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php while ($item = $blerje->fetch_assoc()) { ?>
+                                            <tr>
+                                                <td style="text-align: center"
+                                                    class="hidden-xs"><?php echo $item['blerje_id'] ?></td>
+                                                <td><?php echo $item['emri_bleresit'] ?></td>
+                                                <td><?php echo $item['title'] ?></td>
+                                                <td><?php echo $item['creation_date'] ?></td>
+                                                <td><?php echo $item['status'] == '1' ? "<span class='label label-success'>Kompletuar</span>" : "<span class='label label-danger'>Jo e Kompletuar</span>" ?></td>
+                                                <td align="center">
+                                                    <a href="src/aprovoBlerje.php?blerjeId=<?php echo $item['blerje_id'] ?>"
+                                                       class="btn btn-default"><em alt="" class="fa fa-check">
+                                                            Kompleto</em></a>
+                                                    <a href="src/fshiBlerje.php?blerjeId=<?php echo $item['blerje_id'] ?>"
+                                                       class="btn btn-danger"><em class="fa fa-trash"></em> Fshi</a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                        </tbody>
+                                    </table>
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Mbiemri:</label>
-                            <div class="col-lg-8">
-                                <input class="form-control" name="mbiemri" value="<?php echo $user['lastname']?>" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Username:</label>
-                            <div class="col-lg-8">
-                                <input class="form-control" name="username" value="<?php echo $user['username']?>" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Email:</label>
-                            <div class="col-lg-8">
-                                <input class="form-control" name="email" value="<?php echo $user['email']?>" type="text" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Ditelindja:</label>
-                            <div class="col-lg-8">
-                                <input class="form-control" name="ditelindja" value="<?php echo $user['birthday']?>" type="date">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Password:</label>
-                            <div class="col-md-8">
-                                <input class="form-control" name="password" value="11111122333" type="password">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Konfirmo Password:</label>
-                            <div class="col-md-8">
-                                <input class="form-control" name="konfirmo_password" value="11111122333" type="password">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label"></label>
-                            <div class="col-md-8">
-                                <input class="btn btn-primary" value="Ruaj Ndryshimet" name="submit" type="submit">
-                                <span></span>
-                                <input class="btn btn-default" value="Anulo" type="reset">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                        </section>
+                    </div><!-- /content-panel -->
+                </div><!-- /col-lg-4 -->
+            </div><!-- /row -->
+
+            </div><!-- /col-lg-9 END SECTION MIDDLE -->
+
         </section>
-
-
     </section>
 
     <!--main content end-->
     <!--footer start-->
     <footer class="site-footer">
         <div class="text-center">
-            2014 - Alvarez.is
+            &copy; 2018 all the rights reserved by Adrion Library.
             <a href="index.php#" class="go-top">
                 <i class="fa fa-angle-up"></i>
             </a>

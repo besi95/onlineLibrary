@@ -1,11 +1,3 @@
-/*
-Template Name: DASHGUM FREE - Bootstrap 3.2 Admin Theme
-Template Version: 1.0
-Author: Carlos Alvarez
-Website: http://blacktie.co
-Premium: http://www.gridgum.com
-*/
-
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
 
@@ -71,7 +63,7 @@ a, a:hover, a:focus {
 
 
 
-/*Theme Backgrounds*/
+/*admin Backgrounds*/
 
 .bg-theme {
 	background-color: #68dff0;
@@ -88,12 +80,12 @@ a, a:hover, a:focus {
 .bg-theme04 {
   background-color: #ed5565;
 }
-/*Theme Buttons*/
+/*admin Buttons*/
 
 .btn-theme {
   color: #fff;
-  background-color: #68dff0;
-  border-color: #48bcb4;
+  background-color: #c52e1c;
+  border-color: #c52e1c;
 }
 .btn-theme:hover,
 .btn-theme:focus,
@@ -203,7 +195,7 @@ hr {
 	margin: 0 !important;
 }
 
-/*Exclusive Theme Colors Configuration*/
+/*Exclusive admin Colors Configuration*/
 
 .label-theme {
 	background-color: #68dff0;
@@ -838,7 +830,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 .box1 {
 	padding: 15px;
 	text-align: center;
-	color: #989898;
+    color: #2e3975;
 	border-bottom: 1px solid #989898;
 }
 
@@ -1088,14 +1080,14 @@ PANELS CONFIGURATIONS
 	margin-left: 15px;
 }
 .white-panel .white-header {
-	background: #f4f4f4;
+	background: #424a5d;
 	padding: 3px;
 	margin-bottom: 15px;
-	color: #c6c6c6;
+	color: #ffffff;
 }
 .white-panel .small {
 	font-size: 10px;
-	color: #ccd1d9;
+	color: #298a9a;
 }
 
 .white-panel i {
@@ -1936,7 +1928,7 @@ label {
 	margin: 0;
 	padding: 25px 20px;
 	text-align: center;
-	background: #68dff0;
+	background: #c52e1c;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	color: #fff;
@@ -2216,7 +2208,7 @@ label {
 
 /*footer*/
 .site-footer {
-    background: #68dff0;
+    background: #474966;
     color: #fff;
     padding: 10px 0;
 }
@@ -2241,3 +2233,9 @@ label {
 }
 
 
+.hide-link {
+    color:#f2f2f2;
+}
+.box0:hover a {
+    color: #68dff0;
+}

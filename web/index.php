@@ -181,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <?php while ($libri = $result->fetch_assoc()) { ?>
                         <li>
                             <div class="banner-bottom-grid">
-                                <img src="../Theme/imazhe/<?php echo $libri['liber_image'] ?>" alt=" " width="190px"
+                                <img src="../admin/imazhe/<?php echo $libri['liber_image'] ?>" alt=" " width="190px"
                                      height="286px"/>
                                 <p style="text-align: justify"><?php echo $libri['description'] ?></p>
                                 <span class="styled-title"
@@ -283,9 +283,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <?php while($item = $result5->fetch_assoc()){ ?>
                                     <div class="facts">
                                         <div class="tab_list">
-                                            <a href="../Theme/imazhe/<?php echo $item['liber_image'] ?>" class="b-link-stripe b-animate-go   swipebox"
+                                            <a href="../admin/imazhe/<?php echo $item['liber_image'] ?>" class="b-link-stripe b-animate-go   swipebox"
                                                title="">
-                                                <img width="100px" src="../Theme/imazhe/<?php echo $item['liber_image'] ?>" alt=" " class="img-responsive"/>
+                                                <img width="100px" src="../admin/imazhe/<?php echo $item['liber_image'] ?>" alt=" " class="img-responsive"/>
                                             </a>
                                         </div>
                                         <div class="tab_list1">

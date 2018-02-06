@@ -25,6 +25,7 @@ if(isset($_POST['submit'])){
         session_start();
         $_SESSION['admin_logged_in'] = 1;
         $_SESSION['admin_email'] = $user['email'];
+        $_SESSION['admin_name'] = $user['name'].' '.$user['lastname'];
         header('Location: ../index.php');
     }
 

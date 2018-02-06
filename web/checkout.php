@@ -161,7 +161,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                 <div class="row">
                                     <div class="col-xs-2"><img class="img-responsive"
-                                                               src="../Theme/imazhe/<?php echo $libri['liber_image'] ?>">
+                                                               src="../admin/imazhe/<?php echo $libri['liber_image'] ?>">
                                     </div>
                                     <div class="col-xs-4">
                                         <h4 class="product-name"><strong><?php echo $libri['title'] ?></strong></h4>

@@ -1,13 +1,20 @@
 <?php
 session_start();
+include 'src/db_connect.php';
+
 if(!isset($_SESSION['admin_logged_in'])){
     header('Location: login.php');
 }
-include 'src/db_connect.php';
-$komentSql = "SELECT *,koment.is_approved AS approved,koment.id AS nr FROM koment 
-              INNER JOIN liber ON koment.liber_id = liber.id
-              INNER JOIN user ON user.id = koment.user_id";
-$komentet = $conn->query($komentSql);
+
+if(isset($_COOKIE['editim_result'])){
+    $results = json_decode($_COOKIE['editim_result']);
+    setcookie('editim_result', '', time() - 3600, '/');
+}
+
+$userEmail = $_SESSION['admin_email'];
+$userSql = "SELECT * FROM user WHERE email = '{$userEmail}'";
+$user = $conn->query($userSql);
+$user=$user->fetch_assoc();
 
 
 ?>
@@ -20,21 +27,19 @@ $komentet = $conn->query($komentSql);
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>LIBRARIA-Komentet</title>
+    <title>LIBRARIA-Profili</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
-    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-
 
     <script src="assets/js/chart-master/Chart.js"></script>
 
@@ -43,12 +48,16 @@ $komentet = $conn->query($komentSql);
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <style>
+        input[type="date"] {
+            line-height:inherit;
+        }
+    </style>
 </head>
 
 <body>
 
-<section id="container" >
+<section id="container">
     <!-- **********************************************************************************************************************************************************
     TOP BAR CONTENT & NOTIFICATIONS
     *********************************************************************************************************************************************************** -->
@@ -58,11 +67,11 @@ $komentet = $conn->query($komentSql);
             <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
         </div>
         <!--logo start-->
-        <a href="index.php" class="logo"><b>LIBRARY NAME</b></a>
+        <a href="index.php" class="logo"><b>ADRION LIBRARY</b></a>
         <!--logo end-->
         <div class="top-menu">
             <ul class="nav pull-right top-menu">
-                <li><a class="logout" href="login.php">Logout</a></li>
+                <li><a class="logout" href="src/logout.php">Logout</a></li>
             </ul>
         </div>
     </header>
@@ -73,12 +82,13 @@ $komentet = $conn->query($komentSql);
     *********************************************************************************************************************************************************** -->
     <!--sidebar start-->
     <aside>
-        <div id="sidebar"  class="nav-collapse ">
+        <div id="sidebar" class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu" id="nav-accordion">
 
-                <p class="centered"><a href="profili.php"><img src="assets/img/library.png" class="img-circle" width="60"></a></p>
-                <h5 class="centered">Besim Saraci</h5>
+                <p class="centered"><a href="profili.php"><img src="assets/img/library.png" class="img-circle"
+                                                               width="60"></a></p>
+                <h5 class="centered"><?php echo $_SESSION['admin_name'] ?></h5>
 
                 <li class="mt">
                     <a href="index.php">
@@ -88,45 +98,51 @@ $komentet = $conn->query($komentSql);
                 </li>
 
                 <li class="sub-menu">
-                    <a href="gallery.php" >
+                    <a href="gallery.php">
                         <i class="fa fa-book"></i>
                         <span>Menaxho Librat</span>
                     </a>
                 </li>
 
                 <li class="sub-menu">
-                    <a href="users.php" >
+                    <a href="users.php">
                         <i class="fa fa-user"></i>
                         <span>Menaxho Perdorues</span>
                     </a>
                 </li>
+                <li class="sub-menu">
+                    <a href="blerjet.php" >
+                        <i class="fa fa-dollar"></i>
+                        <span>Menaxho Porosite</span>
+                    </a>
+                </li>
+
                 <li class="sub-menu">
                     <a  href="kategori.php" >
                         <i class="fa fa-book"></i>
                         <span>Kategorite</span>
                     </a>
                 </li>
-
                 <li class="sub-menu">
-                    <a class="active" href="komentet.php" >
+                    <a href="komentet.php">
                         <i class="fa fa-cogs"></i>
                         <span>Komentet</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="mesazhet.php" >
+                    <a href="mesazhet.php">
                         <i class="fa fa-book"></i>
                         <span>Mesazhet</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="chartjs.php" >
+                    <a href="chartjs.php">
                         <i class="fa fa-bar-chart-o"></i>
                         <span>Raporte</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="profili.php" >
+                    <a class="active" href="profili.php">
                         <i class="fa fa-user-md"></i>
                         <span>Profili</span>
                     </a>
@@ -146,63 +162,88 @@ $komentet = $conn->query($komentSql);
         <section class="wrapper">
 
             <!--main content start-->
-            <h3><i class="fa fa-angle-right"></i> MENAXHO KOMENTE</h3>
+            <h3><i class="fa fa-angle-right"></i> EDITO PROFILIN</h3>
             <div class="row mt">
-                <div class="col-lg-12">
-                    <div class="content-panel">
-                        <h4><i class="fa fa-angle-right"></i> Komentet</h4>
-                        <section id="unseen">
-                            <br><br>
-                            <div class="panel panel-default panel-table">
-                                <div class="panel-body">
-                                    <table class="table table-striped table-bordered table-list">
-                                        <thead>
-                                        <tr>
-                                            <th class="hidden-xs">NR #</th>
-                                            <th>Permbajtja</th>
-                                            <th>Libri</th>
-                                            <th>Emri Userit</th>
-                                            <th>Email</th>
-                                            <th>Statusi</th>
-                                            <th style="text-align: center"><em class="fa fa-cog"></em></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php while($koment = $komentet->fetch_assoc()){?>
-                                        <tr>
-                                            <td style="text-align: center" class="hidden-xs"><?php echo $koment['nr'] ?></td>
-                                            <td><?php echo $koment['text'] ?></td>
-                                            <td><?php echo $koment['title']?></td>
-                                            <td><?php echo $koment['name'].' '.$koment['lastname']?></td>
-                                            <td><?php echo $koment['email']?></td>
-                                            <td><?php echo $koment['approved']=='1'? 'Aprovuar': 'Pa-Aprovuar'?></td>
-                                            <td align="center">
-                                                <a href="src/aprovoKoment.php?komentId=<?php echo $koment['nr']?>" class="btn btn-default"><em alt="" class="fa fa-check"></em></a>
-                                                <a href="src/fshiKoment.php?komentId=<?php echo $koment['nr'] ?>" class="btn btn-danger"><em class="fa fa-trash"></em></a>
-                                            </td>
-                                        </tr>
-                                        <?php } ?>
-                                        </tbody>
-                                    </table>
-
-                                </div>
+                <!-- left column -->
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="text-center">
+                        <img src="<?php echo 'imazhe/'.$user['user_image']?>" class="avatar img-circle img-thumbnail"
+                             alt="avatar">
+                    </div>
+                </div>
+                <!-- edit form column -->
+                <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+                    <?php
+                    foreach($results as $result) {
+                        ?>
+                        <span style="color: #557eff;"><?php echo $result ?></span><br>
+                        <?php
+                    }?>
+                    <h3>Informacioni Personal</h3>
+                    <form class="form-horizontal" role="form" method="post" action="src/editoProfilin.php">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Emri:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" name="emri" value="<?php echo $user['name']?>" type="text">
                             </div>
-                        </section>
-                    </div><!-- /content-panel -->
-                </div><!-- /col-lg-4 -->
-            </div><!-- /row -->
-
-            </div><!-- /col-lg-9 END SECTION MIDDLE -->
-
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Mbiemri:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" name="mbiemri" value="<?php echo $user['lastname']?>" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Username:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" name="username" value="<?php echo $user['username']?>" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Email:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" name="email" value="<?php echo $user['email']?>" type="text" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Ditelindja:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" name="ditelindja" value="<?php echo $user['birthday']?>" type="date">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Password:</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="password" value="11111122333" type="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Konfirmo Password:</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="konfirmo_password" value="11111122333" type="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8">
+                                <input class="btn btn-primary" value="Ruaj Ndryshimet" name="submit" type="submit">
+                                <span></span>
+                                <input class="btn btn-default" value="Anulo" type="reset">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </section>
+
+
     </section>
 
     <!--main content end-->
     <!--footer start-->
     <footer class="site-footer">
         <div class="text-center">
-            2014 - Alvarez.is
-            <a href="index.php#" class="go-top">
+            &copy; 2018 all the rights reserved by Adrion Library.            <a href="index.php#" class="go-top">
                 <i class="fa fa-angle-up"></i>
             </a>
         </div>
@@ -252,7 +293,7 @@ $komentet = $conn->query($komentSql);
             },
             legend: [
                 {type: "text", label: "Special event", badge: "00"},
-                {type: "block", label: "Regular event", }
+                {type: "block", label: "Regular event",}
             ]
         });
     });
