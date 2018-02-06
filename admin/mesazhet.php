@@ -178,7 +178,7 @@ $mesazhet = $conn->query($mesazhetSql);
                                                 <td style="text-align: center" class="hidden-xs"><?php echo $mesazhi['id']?></td>
                                                 <td><?php echo $mesazhi['permbajtja']?></td>
                                                 <td><?php echo $mesazhi['name']?></td>
-                                                <td><?php echo $mesazhi['sent_from']?></td>
+                                                <td><a href="mailto:<?php echo $mesazhi['sent_from']?>"><?php echo $mesazhi['sent_from']?></a></td>
                                                 <td><?php echo $mesazhi['date']?></td>
                                                 <td align="center">
                                                     <a href="src/fshiMesazh.php?mesazhId=<?php echo $mesazhi['id']?>" class="btn btn-danger"><em class="fa fa-trash"></em></a>

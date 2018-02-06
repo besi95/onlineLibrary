@@ -8,7 +8,8 @@ include 'src/db_connect.php';
 
 $blerjeSql = "SELECT *,blerje.id AS blerje_id,concat(user.name,' ',user.lastname) AS emri_bleresit FROM `blerje` 
               INNER JOIN liber ON liber.id = blerje.liber_id
-              INNER JOIN user ON user.id = blerje.user_id";
+              INNER JOIN user ON user.id = blerje.user_id
+              ORDER BY blerje_id DESC";
 $blerje = $conn->query($blerjeSql);
 
 

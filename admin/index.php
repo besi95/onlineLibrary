@@ -37,7 +37,7 @@ $bestBook= $conn->query($bestBookSql);
 $bestBook = $bestBook->fetch_assoc();
 
 
-$njoftimeSql = "SELECT mesazhet.permbajtja,mesazhet.name,mesazhet.date FROM mesazhet";
+$njoftimeSql = "SELECT mesazhet.permbajtja,mesazhet.name,mesazhet.date FROM mesazhet LIMIT 5";
 $njoftime = $conn->query($njoftimeSql);
 
 

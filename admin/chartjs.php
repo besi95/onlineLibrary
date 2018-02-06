@@ -149,7 +149,7 @@ if(!isset($_SESSION['admin_logged_in'])){
                       </div>
                       <div class="col-lg-6">
                           <div class="content-panel">
-							  <h4><i class="fa fa-angle-right"></i> Blerjet kete Muaj</h4>
+							  <h4><i class="fa fa-angle-right"></i> Komentet sipas Librave</h4>
                               <div class="panel-body text-center">
                                   <div id="piechart2" style="width: 500px; height: 400px;"></div>
                               </div>

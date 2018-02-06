@@ -19,8 +19,8 @@ if (isset($_POST['submit'])) {
     /**
      * shto blerjen e re
      */
-    $blerjeSql = "INSERT INTO `blerje` (`user_id`, `liber_id`, `total`) 
-                  VALUES ('{$userId}', '{$libri['id']}', '{$libri['price']}');";
+    $blerjeSql = "INSERT INTO `blerje` (`user_id`, `liber_id`, `total`,`status`) 
+                  VALUES ('{$userId}', '{$libri['id']}', '{$libri['price']}','0');";
     $result = $conn->query($blerjeSql);
 
 

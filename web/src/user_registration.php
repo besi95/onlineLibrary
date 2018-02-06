@@ -61,13 +61,14 @@ if (count($errors) > 0) {
     $result = $conn->query($query);
 
 
-    if ($result == TRUE) {
+
+    if ($result == TRUE ) {
         setcookie('registration_success', 'Perdoruesi u krijua me sukses!', time() + 3600, '/');
         header('Location: ../login.php');
     } else {
         $errors[] = "Regjistrimi nuk mund te kryhet. Ju lutem kontakti administratorin e faqes.";
         setcookie('registration_error', json_encode($errors), time() + 3600, '/');
-        header('Location: ../registration.phtml');
+        header('Location: ../registration.php');
     }
 
 

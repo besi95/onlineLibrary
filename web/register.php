@@ -97,8 +97,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- register -->
         <div class="sign-up-form">
             <h3>Regjistrohu</h3>
-            <p>Having hands on experience in creating innovative designs,I do offer design
-                solutions which harness</p>
+            <p>Duke u regjistruar ju keni akses te plote ne librari duke komentuar, bere blerje, etj.</p>
             <div class="sign-up">
 
                 <?php

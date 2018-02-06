@@ -112,6 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						 <input type="text" name="email" placeholder="Email"  required>
 						 <h5>Password:</h5>
 						 <input name="password" placeholder="******" type="password" required>
+                    <br>
                          <span style="color: red"><?php echo isset($_COOKIE['usr_login_error']) ?  $_COOKIE['usr_login_error']:"";  ?></span><br>
                          <?php
                          setcookie('usr_login_error','',time()-3600,'/');
@@ -124,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="col-md-6 login-right">
 					<h3>Krijo Llogari</h3>
-					<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+					<p>Duke u regjistruar ju keni akses te plote ne librari duke lexuar libra te ndryshem, komentuar mbi, beni blerje dhe shume funksionalitete te tjera.</p>
 					<a href="register.php" class="hvr-bounce-to-bottom button">Krijo Llogari</a>
 			</div>
 			<div class="clearfix"></div>
