@@ -2,10 +2,17 @@
 session_start();
 include "src/db_connect.php";
 
+if(isset($_COOKIE['editim_status'])){
+    $messages = json_decode($_COOKIE['editim_status']);
+    setcookie('editim_status', '', time() - 3600, '/');
+
+}
+
 
 if(!isset($_SESSION['admin_logged_in'])){
     header('Location: login.php');
 }
+
 
 $liberId = $_GET['liberId'];
 
@@ -173,6 +180,10 @@ while($autorT = $allAuthors->fetch_assoc()){
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
+            <?php if(isset($messages)){?>
+
+                <div class="alert alert-danger" ><?php echo $messages[0]?></div>
+            <?php }?>
 
             <?php if ($liberId == 'new') { ?>
                 <!--main content start-->
@@ -257,6 +268,8 @@ while($autorT = $allAuthors->fetch_assoc()){
                 <!--existing book-->
                 <!--main content start-->
                 <h3><i class="fa fa-angle-right"></i> EDITO LIBRIN</h3>
+                <a style="float:right;display: inline" href="src/fshiLiber.php?liberId=<?php echo $liberId?>" class="btn btn-theme">FSHI LIBRIN</a>
+
                 <div class="row mt">
                     <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data" action="src/editoLiber.php">
                         <!-- left column -->

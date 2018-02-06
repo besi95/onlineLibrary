@@ -24,6 +24,7 @@ if(isset($_POST['submit'])){
 
         $user= $result->fetch_assoc();
         session_start();
+        $_SESSION['user_id'] = $user['id'];
         $_SESSION['usr_logged_in'] = 1;
         $_SESSION['usr_email'] = $user['email'];
         header('Location: ../index.php');

@@ -10,9 +10,13 @@ if (isset($_COOKIE['checkout_status'])) {
 }
 
 include 'src/db_connect.php';
-//merr librin nga databasa
+//merr 3 librat e fundit nga databasa
 $liberSql = "SELECT * from liber ORDER BY id DESC LIMIT 3";
 $result = $conn->query($liberSql);
+
+//merr 5 librat e fundit nga databasa
+$liber5Sql = "SELECT * from liber ORDER BY RAND() DESC LIMIT 3";
+$result5 = $conn->query($liber5Sql);
 
 ?>
 <!DOCTYPE html>
@@ -139,11 +143,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     });
                 </script>
 
-                <?php if(isset($message)){?>
-                <div class="alert alert-warning">
-                    <?php echo $message; ?>
-                </div>
-<?php }?>
+                <?php if (isset($message)) { ?>
+                    <div class="alert alert-warning">
+                        <?php echo $message; ?>
+                    </div>
+                <?php } ?>
                 <!--//End-slider-script -->
                 <div id="top" class="callbacks_container wow fadeInUp" data-wow-delay="0.5s">
                     <ul class="rslides" id="slider3">
@@ -179,8 +183,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="banner-bottom-grid">
                                 <img src="../Theme/imazhe/<?php echo $libri['liber_image'] ?>" alt=" " width="190px"
                                      height="286px"/>
-                                <p><?php echo $libri['description'] ?></p>
-                                <span style="margin-bottom: 15px;display:block; color: #C34C21;"><b><i><?php echo $libri['title'] ?></i></b></span>
+                                <p style="text-align: justify"><?php echo $libri['description'] ?></p>
+                                <span class="styled-title"
+                                      style="margin-bottom: 25px;display: block"><b><i><?php echo $libri['title'] ?></i></b></span>
                                 <div class="more">
                                     <a href="single.php?bookId=<?php echo $libri['id'] ?>"
                                        style="width:200px; padding-top: 15px;"
@@ -223,7 +228,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- blog -->
             <div class="blog">
                 <div class="blog-left">
-                    KETU BEJ DICKA SA PER DESIGN
+                    <blockquote class="quote-box">
+                        <p class="quotation-mark">
+                            “
+                        </p>
+                        <p class="quote-text">
+                            It is what you read when you don’t have to that determines what you will be when you can’t
+                            help it.
+                        </p>
+                        <hr>
+                        <div class="blog-post-actions">
+                            <p class="blog-post-bottom pull-left">
+                                – Oscar Wilde </p>
+                        </div>
+                    </blockquote>
+                    <blockquote class="quote-box quote-box2">
+                        <p class="quotation-mark">
+                            “
+                        </p>
+                        <p class="quote-text">
+                            Great books help you understand, and they help you feel understood.
+                        </p>
+                        <hr>
+                        <div class="blog-post-actions">
+                            <p class="blog-post-bottom pull-left">
+                                – John Green </p>
+                        </div>
+                    </blockquote>
+                    <blockquote class="quote-box quote-box3">
+                        <p class="quotation-mark">
+                            “
+                        </p>
+                        <p class="quote-text">
+                            Whenever you read a good book, somewhere in the world a door opens to allow in more
+                            light. </p>
+                        <hr>
+                        <div class="blog-post-actions">
+                            <p class="blog-post-bottom pull-left">
+                                – Vera Nazarian
+                            </p>
+                        </div>
+                    </blockquote>
                 </div>
                 <div class="blog-right">
                     <div class="sap_tabs">
@@ -235,58 +280,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                             <div class="resp-tabs-container">
                                 <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+                                    <?php while($item = $result5->fetch_assoc()){ ?>
                                     <div class="facts">
                                         <div class="tab_list">
-                                            <a href="images/8-.jpg" class="b-link-stripe b-animate-go   swipebox"
+                                            <a href="../Theme/imazhe/<?php echo $item['liber_image'] ?>" class="b-link-stripe b-animate-go   swipebox"
                                                title="">
-                                                <img src="images/8.jpg" alt=" " class="img-responsive"/>
+                                                <img width="100px" src="../Theme/imazhe/<?php echo $item['liber_image'] ?>" alt=" " class="img-responsive"/>
                                             </a>
                                         </div>
                                         <div class="tab_list1">
-                                            <a href="#">excepturi sint occaecati</a>
-                                            <p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
+                                            <a href="#"><?php echo $item['title']?></a>
+                                            <p><?php echo $item['published_on']?><span><?php echo substr($item['description'],0,100).' ...'?></span></p>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div class="facts">
-                                        <div class="tab_list">
-                                            <a href="images/9-.jpg" class="b-link-stripe b-animate-go   swipebox"
-                                               title="">
-                                                <img src="images/9.jpg" alt=" " class="img-responsive"/>
-                                            </a>
-                                        </div>
-                                        <div class="tab_list1">
-                                            <a href="#">excepturi sint occaecati</a>
-                                            <p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="facts">
-                                        <div class="tab_list">
-                                            <a href="images/10-.jpg" class="b-link-stripe b-animate-go   swipebox"
-                                               title="">
-                                                <img src="images/10.jpg" alt=" " class="img-responsive"/>
-                                            </a>
-                                        </div>
-                                        <div class="tab_list1">
-                                            <a href="#">excepturi sint occaecati</a>
-                                            <p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="facts">
-                                        <div class="tab_list">
-                                            <a href="images/7-.jpg" class="b-link-stripe b-animate-go   swipebox"
-                                               title="">
-                                                <img src="images/7.jpg" alt=" " class="img-responsive"/>
-                                            </a>
-                                        </div>
-                                        <div class="tab_list1">
-                                            <a href="#">excepturi sint occaecati</a>
-                                            <p>June 30,2015<span>Nam libero tempore, cum soluta nobis.</span></p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <script src="js/easyResponsiveTabs.js" type="text/javascript"></script>

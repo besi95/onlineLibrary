@@ -147,12 +147,12 @@ $liber = $conn->query($liberSql);
               <?php $i=0;
               while($libri = $liber->fetch_assoc()){?>
 
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc text-center">
+					<div class="col-md-3 desc text-center">
 						<div class="project-wrapper">
 		                    <div class="project">
 		                        <div class="photo-wrapper">
 		                            <div class="photo">
-		                            	<a class="fancybox" href="<?php echo 'imazhe/'.$libri['liber_image']?>"><img width="100%" style="height: 400px" class="img-responsive" src="<?php echo 'imazhe/'.$libri['liber_image']?>" alt=""></a>
+		                            	<a class="fancybox" href="<?php echo 'imazhe/'.$libri['liber_image']?>"><img width="100%" style="height: 300px" class="img-responsive" src="<?php echo 'imazhe/'.$libri['liber_image']?>" alt=""></a>
 		                            </div>
 		                            <div class="overlay"></div>
 		                        </div>

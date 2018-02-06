@@ -9,19 +9,19 @@ $oldImage = $_POST['old_image'];
 $titulli = $_POST['titulli'];
 $shtepiaBotuese = $_POST['shtepia-botuese'];
 $kategoria = $_POST['kategoria'];
-$pershkrimi = $_POST['pershkrimi'];
+$pershkrimi = addslashes($_POST['pershkrimi']);
 $autoret = $_POST['autori'];
 $cmimi = $_POST['cmimi'];
 $stoku = $_POST['stoku'];
 $image = $_FILES["imazhi"]["name"];;
 $errors = array();
 
-
-if ($image != $oldImage && $image != '') {
-    $uploadStatus = uploadImazhin();
-} else {
+if($oldImage != $image){
     $image = $oldImage;
+    $uploadStatus = uploadImazhin();
 }
+
+
 
 $shtoQuery = "UPDATE liber SET
                title='{$titulli}',
@@ -34,16 +34,19 @@ $shtoQuery = "UPDATE liber SET
                WHERE id='{$liberId}'";
 
 
+
 $result = $conn->query($shtoQuery);
 
 editoAutoret($autoret, $liberId, $conn);
 
-if ($result && $uploadStatus) {
-    setcookie('editim_success', 'Libri u shtua me sukses!', time() + 3600, '/');
+if ($result) {
+    $errors[] = "Libri u editua me sukses.";
+    setcookie('editim_status', json_encode($errors), time() + 3600, '/');
     header('Location: ../editoLiber.php?liberId=' . $liberId);
+
 } else {
     $errors[] = "Editimi i librit nuk mund te kryhet. Provoni perseri.";
-    setcookie('editim_errors', json_encode($errors), time() + 3600, '/');
+    setcookie('editim_status', json_encode($errors), time() + 3600, '/');
     header('Location: ../editoLiber.php?liberId=' . $liberId);
 
 }
@@ -56,10 +59,6 @@ function uploadImazhin()
     $target_file = $target_dir . basename($_FILES["imazhi"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-// Check if file already exists
-    if (file_exists($target_file)) {
-        return false;
-    }
 // Check file size
     if ($_FILES["imazhi"]["size"] > 500000) {
         return false;

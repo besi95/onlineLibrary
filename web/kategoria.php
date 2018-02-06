@@ -109,15 +109,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <!-- //header -->
         <!-- pages -->
-        <div class="pages">
+        <div class="pages faqja-librit-wrapper">
             <h1 class="custom-header-kat"><?php echo $titleKat?></h1>
             <div class="banner-bottom">
-                <div class="row">
+                <div class="row liber-faqe">
                     <?php while ($liber = $libra->fetch_assoc()){?>
-                    <div class="col-md-4">
-                        <img style=";height: 500px;" src="../Theme/imazhe/<?php echo $liber['liber_image']?>" alt=" " class="img-responsive" />
-                        <p style="text-align: justify;"><b><?php echo $liber['title']?></b></br>
-                            <?php echo $liber['description']?>
+                    <div class="col-md-3 liber-item">
+                        <img style=";height: 300px;padding-left: 10%" src="../Theme/imazhe/<?php echo $liber['liber_image']?>" alt=" " class="img-responsive" />
+                        <p style="text-align: justify;"><b><span class="styled-title"><?php echo $liber['title']?></span></b></br>
+                            <?php echo substr($liber['description'],0,200).' ...'?>
                             </br>
                             <b>Cmimi: </b><?php echo $liber['price'].'$'?><br>
                             <b>Shtepia Botuese:</b><?php echo $liber['publisher']?><br>
@@ -163,10 +163,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </script>
                 <script type="text/javascript" src="js/jquery.flexisel.js"></script>
             </div>
+        </div>
+    </div>
 
 
 
-            <!-- footer -->
+
+            <!-- footer --z>
 
 
             <!-- //footer -->

@@ -331,7 +331,7 @@ a.navbar-brand:hover {
 .callbacks_nav {
 	position: absolute;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	top:40%;
+	top:200px;
 	left: -5.5%;
 	opacity: 0.7;
 	z-index: 3;
@@ -2728,4 +2728,77 @@ p.lom{
 	font-family: LobsterTwo-Regular;
 	text-align: center;
 	margin-bottom: 5px;
+}
+
+.styled-title {
+	color: #C34C21;
+	font-size: 25px;
+	font-family: LobsterTwo-Regular;
+	margin-bottom: 5px;
+	margin-top: 8px;
+	padding-left: 60px;
+}
+
+.liber-item {
+	box-shadow: 0px 2px 6px #aaa29f;
+	padding: 10px;
+	margin-right: 35px;
+	margin-top: 10px;
+}
+.liber-faqe{
+	margin-left: 10%;
+}
+
+.faqja-librit-wrapper {
+	padding-left:20px;
+	padding-right: 20px;
+}
+
+
+/**
+quote styles
+ */
+
+blockquote{
+	border-left:none
+}
+
+.quote-badge{
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.quote-box{
+
+	overflow: hidden;
+	margin-top: -50px;
+	padding-top: -100px;
+	border-radius: 17px;
+	background-color: #4ADFCC;
+	margin-top: 25px;
+	color:white;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+
+}
+
+.quotation-mark{
+
+	margin-top: -10px;
+	font-weight: bold;
+	font-size:100px;
+	color:white;
+	font-family: "Times New Roman", Georgia, Serif;
+
+}
+
+.quote-text{
+
+	font-size: 19px;
+	margin-top: -65px;
+}
+
+.quote-box2 {
+	background-color: #E78344;
+}
+.quote-box3 {
+	background-color: #4fe78c;
 }

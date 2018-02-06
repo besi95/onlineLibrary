@@ -23,6 +23,7 @@ if (isset($_POST['submit'])) {
                   VALUES ('{$userId}', '{$libri['id']}', '{$libri['price']}');";
     $result = $conn->query($blerjeSql);
 
+
     /**
      * ul sasine pasi behet blerja
      */

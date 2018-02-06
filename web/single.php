@@ -137,13 +137,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                              src="../Theme/imazhe/<?php echo $libri['liber_image'] ?>" alt=" "/>
                     </div>
                     <div class="col-md-7 book-page">
-                        <?php if($libri['stock'] > 0){?>
                         <div  class="more">
+                        <?php if(!isset($_SESSION['usr_logged_in'])){?>
+                            <span style="color:red">Ju duhet te logoheni per te blere librin.</span>
+
+                        <?php }elseif($libri['stock'] > 0){?>
                             <a style="width: 200px" href="checkout.php?bookId=<?php echo $libri['id']?>" class="hvr-bounce-to-bottom sint">BLI Librin </a>
-                        </div>
-                        <?php }else{?>
+                        <?php } else{?>
                             <span style="color:red">Libri nuk eshte ne stok per momentin.</span>
                         <?php }?>
+                        </div>
+
                         <p><b>Cmimi:</b><?php echo $libri['price'] . ' $' ?></p>
                         <p><b>Pershkrimi:</b><br><?php echo $libri['description'] ?></p>
                         <p><b>Shtepia Botuese:</b><?php echo $libri['publisher'] ?></p>
