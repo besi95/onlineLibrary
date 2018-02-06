@@ -153,7 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="rslides" id="slider3">
                         <li>
                             <div class="banner-inf">
-                                <h3></h3>
+                                <h3>Lehtesi</h3>
                                 <p>Nje nga zgjidhjet me te mira per te kaluar kohen tuaj te lire. </br> Zgjidhni librat
                                     Adrion.</p>
 
