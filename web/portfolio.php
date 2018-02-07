@@ -12,8 +12,6 @@ $result = $conn->query($kategorySql);
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Quickly Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
@@ -65,7 +63,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="hvr-bounce-to-bottom"><a href="index.php">Home</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="about.php">Rreth Nesh</a></li>
 							<li class="hvr-bounce-to-bottom active"><a href="portfolio.php">Kategorite</a></li>
-
+                             <?php if(isset($_SESSION['usr_logged_in'])){?>
+                                 <li class="hvr-bounce-to-bottom"><a href="blerjet.php">Blerjet e Mia</a></li>
+                             <?php }?>
 							<li class="hvr-bounce-to-bottom"><a href="contact.php">Kontakt</a></li>
 						  </ul>
                             <div class="sign-in">

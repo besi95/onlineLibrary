@@ -1,4 +1,5 @@
 ﻿<?php
+session_start();
 include "src/db_connect.php";
 
 if(isset($_POST['submit']))
@@ -70,7 +71,9 @@ if(isset($_POST['submit']))
 							<li class="hvr-bounce-to-bottom"><a href="index.php">Home</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="about.php">Rreth Nesh</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="portfolio.php">Kategorite</a></li>
-							
+                             <?php if(isset($_SESSION['usr_logged_in'])){?>
+                                 <li class="hvr-bounce-to-bottom"><a href="blerjet.php">Blerjet e Mia</a></li>
+                             <?php }?>
 							<li class="hvr-bounce-to-bottom active"><a href="contact.php">Kontakt</a></li>
 						  </ul>
                             <div class="sign-in">

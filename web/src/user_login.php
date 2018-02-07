@@ -26,8 +26,6 @@ if(isset($_POST['submit'])){
         setcookie('usr_login_error','Ju nuk jeni aprovuar akoma nga administratori i librarise.',time()+3600,'/');
         header('Location: ../login.php');
     }else{
-
-        $user= $result->fetch_assoc();
         session_start();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['usr_logged_in'] = 1;

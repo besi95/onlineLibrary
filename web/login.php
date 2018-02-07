@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php session_start();?>
 <?php
 if(isset($_COOKIE['registration_success'])){
@@ -68,6 +62,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="hvr-bounce-to-bottom"><a href="index.php">Home</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="about.php">Rreth Nesh</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="portfolio.php">Kategorite</a></li>
+                             <?php if(isset($_SESSION['usr_logged_in'])){?>
+                                 <li class="hvr-bounce-to-bottom"><a href="blerjet.php">Blerjet e Mia</a></li>
+                             <?php }?>
 							<li class="hvr-bounce-to-bottom"><a href="contact.php">Kontakt</a></li>
 						  </ul>
 						  <div class="sign-in">
