@@ -146,6 +146,9 @@ a.navbar-brand:hover {
 	padding:0 3.5em 3.5em 3.5em;
 	background:#fff;
 }
+.pages {
+	padding:0 3.5em 0em 3.5em;
+}
 .header-bottom-top{
 	float:right;
 }
@@ -198,7 +201,7 @@ a.navbar-brand:hover {
 }
 /*-- banner --*/
 .banner{
-	background:url(../images/fotokryesore.jpg) no-repeat 0px 0px;
+	background:url(../images/back_silder.jpg) no-repeat 0px 0px;
 	background-size: cover;
 	-webkit-background-size: cover;
 	    -o-background-size: cover;
@@ -328,7 +331,7 @@ a.navbar-brand:hover {
 .callbacks_nav {
 	position: absolute;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
-	top:40%;
+	top:200px;
 	left: -5.5%;
 	opacity: 0.7;
 	z-index: 3;
@@ -552,15 +555,15 @@ background: url(../images/3.png) no-repeat -66px 0px;
 	text-align: left;
 }
 .more a{
-	padding: 18px 46px 21px 20px;
+	padding: 8px 90px 33px 20px;
 	color: #fff;
 	background: url(../images/img-sp.png) no-repeat 71px -194px #c34c21;
 	display: block;
-	width: 150px;
+	width: 180px;
 	height: 25px;
 	text-decoration: none;
 	font-size: 14px;
-	margin: 0 0 0 11em;
+	margin: 0 15%;
 	font-family: LobsterTwo-Regular;
 }
 a.sint:before{
@@ -1232,14 +1235,12 @@ p.lom{
 	outline:none;
 	border:1px solid #B2ACAC;
 	background:none;
-	color:#fff;
+	/*color:#fff;*/
 	font-size:14px;
 	padding:13px 10px;
 	width:100%;
 	}
-.in-left input[type="text"]:nth-child(2){
-	margin:3em 0;
-	}
+
 .in-right{
 	float:right;
 	width:50%;
@@ -1580,6 +1581,7 @@ p.lom{
 	font-size: 14px;
 	line-height: 1.8em;
 	margin: 1em 0;
+
 }
 /*---comment-box----*/
 .table-form{
@@ -1684,7 +1686,7 @@ p.lom{
 	margin: 1.5em 0;
 	background: #eee;
 	padding: 2em;
-	width: 70%;
+	width: 100%;
 }
 .blog-top p {
 	font-size: 1em;
@@ -1702,7 +1704,7 @@ p.lom{
   display: inline-block;
 }
 .single-page-artical {
-  min-height: 2280px;
+  /*min-height: 2280px;*/
 }
 .navbar-collapse {
   padding-right: 0;
@@ -2693,4 +2695,110 @@ p.lom{
 	.login-grids {
 	  padding: 1.5em 0 0;
 	}
-}	
+}
+.custom-header-kat {
+	text-align: center;
+	padding-top: 50px;
+	border-bottom: 3px dotted #00e16a;
+	color: #9e521b;
+	padding-bottom: 10px;
+}
+.single-liber-img {
+	width:500px;
+	height:500px;
+
+}
+.book-page {
+	padding: 10em 0 1.5em;
+}
+.custom-header-kat-home {
+	padding-top: 10px;
+	border-bottom: 3px dotted #e16a21;
+	padding-bottom: 10px;
+	color: #C34C21;
+	font-size: 35px;
+	font-family: LobsterTwo-Regular;
+	text-align: center;
+	margin-bottom: 50px;
+}
+.custom-header-kat-checkout {
+	border-bottom: 3px dotted #e16a21;
+	color: #C34C21;
+	font-size: 25px;
+	font-family: LobsterTwo-Regular;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.styled-title {
+	color: #C34C21;
+	font-size: 25px;
+	font-family: LobsterTwo-Regular;
+	margin-bottom: 5px;
+	margin-top: 8px;
+	padding-left: 60px;
+}
+
+.liber-item {
+	box-shadow: 0px 2px 6px #aaa29f;
+	padding: 10px;
+	margin-right: 35px;
+	margin-top: 10px;
+}
+.liber-faqe{
+	margin-left: 10%;
+}
+
+.faqja-librit-wrapper {
+	padding-left:20px;
+	padding-right: 20px;
+}
+
+
+/**
+quote styles
+ */
+
+blockquote{
+	border-left:none
+}
+
+.quote-badge{
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.quote-box{
+
+	overflow: hidden;
+	margin-top: -50px;
+	padding-top: -100px;
+	border-radius: 17px;
+	background-color: #4ADFCC;
+	margin-top: 25px;
+	color:white;
+	box-shadow: 2px 2px 2px 2px #E0E0E0;
+
+}
+
+.quotation-mark{
+
+	margin-top: -10px;
+	font-weight: bold;
+	font-size:100px;
+	color:white;
+	font-family: "Times New Roman", Georgia, Serif;
+
+}
+
+.quote-text{
+
+	font-size: 19px;
+	margin-top: -65px;
+}
+
+.quote-box2 {
+	background-color: #E78344;
+}
+.quote-box3 {
+	background-color: #4fe78c;
+}

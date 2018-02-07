@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php session_start();?>
 <?php
 if(isset($_COOKIE['registration_success'])){
@@ -15,7 +9,7 @@ setcookie('registration_success',"",time()-3600,'/');
 <!DOCTYPE html>
 <html>
 <head>
-<title>Adrion | Library</title>
+<title>Login</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -68,6 +62,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="hvr-bounce-to-bottom"><a href="index.php">Home</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="about.php">Rreth Nesh</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="portfolio.php">Kategorite</a></li>
+                             <?php if(isset($_SESSION['usr_logged_in'])){?>
+                                 <li class="hvr-bounce-to-bottom"><a href="blerjet.php">Blerjet e Mia</a></li>
+                             <?php }?>
 							<li class="hvr-bounce-to-bottom"><a href="contact.php">Kontakt</a></li>
 						  </ul>
 						  <div class="sign-in">
@@ -112,6 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						 <input type="text" name="email" placeholder="Email"  required>
 						 <h5>Password:</h5>
 						 <input name="password" placeholder="******" type="password" required>
+                    <br>
                          <span style="color: red"><?php echo isset($_COOKIE['usr_login_error']) ?  $_COOKIE['usr_login_error']:"";  ?></span><br>
                          <?php
                          setcookie('usr_login_error','',time()-3600,'/');
@@ -124,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="col-md-6 login-right">
 					<h3>Krijo Llogari</h3>
-					<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+					<p>Duke u regjistruar ju keni akses te plote ne librari duke lexuar libra te ndryshem, komentuar mbi, beni blerje dhe shume funksionalitete te tjera.</p>
 					<a href="register.php" class="hvr-bounce-to-bottom button">Krijo Llogari</a>
 			</div>
 			<div class="clearfix"></div>
@@ -135,7 +133,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div class="footer-bottom">
 		<div class="container">
-			<p>© 2015 Quickly. All rights reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
+			<p>© 2018 All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
 		</div>
 	</div>
 <!-- //footer -->

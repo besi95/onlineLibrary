@@ -1,18 +1,29 @@
-﻿<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+﻿<?php
+session_start();
+include "src/db_connect.php";
+
+if(isset($_POST['submit']))
+{
+    $emri= $_POST['emri'];
+    $email= $_POST['email'];
+    $mesazhi= $_POST['mesazhi'];
+
+    $sql = "INSERT INTO mesazhet (name,sent_from, permbajtja) 
+            VALUES ('$emri','$email', '$mesazhi')" ;
+    $result = $conn->query($sql);
+    header("location:contact.php");
+
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Library</title>
+<title>Contact</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Quickly Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
@@ -60,7 +71,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="hvr-bounce-to-bottom"><a href="index.php">Home</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="about.php">Rreth Nesh</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="portfolio.php">Kategorite</a></li>
-							
+                             <?php if(isset($_SESSION['usr_logged_in'])){?>
+                                 <li class="hvr-bounce-to-bottom"><a href="blerjet.php">Blerjet e Mia</a></li>
+                             <?php }?>
 							<li class="hvr-bounce-to-bottom active"><a href="contact.php">Kontakt</a></li>
 						  </ul>
                             <div class="sign-in">
@@ -89,8 +102,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- contact -->
 	<div class="contact">
 		<div class="contact-left">
-			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2620.908687693293!2d2.3574429999999995!3d48.936181!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66eb34e18b951%3A0xc3c6a4ac9498bfce!2sWorld&#39;s+Business+Import!5e0!3m2!1sen!2sin!4v1429768672602" frameborder="0" style="border:0"></iframe>
-		</div>
+            <iframe width="600" height="450" frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?q=Pallati%20i%20Kultur%C3%ABs%2C%20Sheshi%20Sk%C3%ABnderbej%2C%20Tirana%2C%20Albania&key= AIzaSyBHw-lztfhz2_EKCWKOPUi1_sKGll6I-Qk " allowfullscreen></iframe> 		</div>
 		<div class="contact-right">
 			<p class="phn">+355 481 5842</p>
 			<p class="phn-bottom">
@@ -102,16 +115,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="contact-left1">
 			<h3>Na kontaktoni <span>Keni pyetje</span></h3>
 			<div class="in-left">
-				<form>
-					<input type="text" placeholder="Emri juaj:" required=" ">
-					<input type="text" placeholder="Numri i telefonit:" required=" ">
-					<input type="text" placeholder="E-mail:" required=" ">
-				</form>
+				<form method="post">
+					Emri:<input type="text" name="emri" placeholder="Emri juaj:" required>
+                    <br>
+                    <br>
+					Email:<input type="text" name="email" placeholder="E-mail:" required>
 			</div>
 			<div class="in-right">
-				<form>
-					<textarea placeholder="Mesazhi:" required=" "></textarea>
-					<input type="submit" value="Dergo">
+					Mesazhi:<textarea name="mesazhi" placeholder="Mesazhi:" required="required"></textarea>
+					<input type="submit" name="submit" value="Dergo">
 				</form>
 			</div>
 			<div class="clearfix"> </div>
@@ -136,7 +148,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div class="footer-bottom">
 		<div class="container">
-			<p>Â© 2015 Quickly. All rights reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
+			<p>© 2018 All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
 		</div>
 	</div>
 <!-- //footer -->

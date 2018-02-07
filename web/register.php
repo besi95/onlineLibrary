@@ -1,9 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <?php session_start();
 $errors = array();
 if(isset($_COOKIE['registration_error'])) {
@@ -15,7 +9,7 @@ if(isset($_COOKIE['registration_error'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Adrion | Regjistrim</title>
+    <title>Regjistrohu</title>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -74,7 +68,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li class="hvr-bounce-to-bottom"><a href="index.php">Home</a></li>
                             <li class="hvr-bounce-to-bottom"><a href="about.php">Rreth Nesh</a></li>
                             <li class="hvr-bounce-to-bottom"><a href="portfolio.php">Kategorite</a></li>
-
+                            <?php if(isset($_SESSION['usr_logged_in'])){?>
+                                <li class="hvr-bounce-to-bottom"><a href="blerjet.php">Blerjet e Mia</a></li>
+                            <?php }?>
                             <li class="hvr-bounce-to-bottom"><a href="contact.php">Kontakt</a></li>
                         </ul>
                         <div class="sign-in">
@@ -103,8 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- register -->
         <div class="sign-up-form">
             <h3>Regjistrohu</h3>
-            <p>Having hands on experience in creating innovative designs,I do offer design
-                solutions which harness</p>
+            <p>Duke u regjistruar ju keni akses te plote ne librari duke komentuar, bere blerje, etj.</p>
             <div class="sign-up">
 
                 <?php
@@ -211,7 +206,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div class="footer-bottom">
     <div class="container">
-        <p>© 2015 Quickly. All rights reserved | Design by <a href="http://w3layouts.com/"> W3layouts</a></p>
+        <p>© 2018  All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
     </div>
 </div>
 <!-- //footer -->

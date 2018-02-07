@@ -1,18 +1,17 @@
-﻿<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+﻿<?php
+session_start();
+include 'src/db_connect.php';
+$kategorySql = "SELECT * FROM `categories`";
+$result = $conn->query($kategorySql);
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Zgjidhni Kategorine e Librave | Portfolio :: w3layouts</title>
+<title>Zgjidhni Kategorine e Librave </title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Quickly Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
@@ -64,7 +63,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li class="hvr-bounce-to-bottom"><a href="index.php">Home</a></li>
 							<li class="hvr-bounce-to-bottom"><a href="about.php">Rreth Nesh</a></li>
 							<li class="hvr-bounce-to-bottom active"><a href="portfolio.php">Kategorite</a></li>
-
+                             <?php if(isset($_SESSION['usr_logged_in'])){?>
+                                 <li class="hvr-bounce-to-bottom"><a href="blerjet.php">Blerjet e Mia</a></li>
+                             <?php }?>
 							<li class="hvr-bounce-to-bottom"><a href="contact.php">Kontakt</a></li>
 						  </ul>
                             <div class="sign-in">
@@ -95,6 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h3>Kategorite e Librave</h3>
 			<section class="main">
 				<ul class="ch-grid">
+                    <?php while($kategori = $result->fetch_assoc()){?>
 					<li>
 						<div class="ch-item ch-img-1">
 							<div class="ch-info-wrap">
@@ -102,81 +104,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="ch-info-front ch-img-1"></div>
 									<div class="ch-info-back">
 										<h3>Kategoria</h3>
-										<a href="komedi.php"><p>Komedi</p></a>
+										<a href="kategoria.php?katID=<?php echo $kategori['id']?>"<p><?php echo $kategori['category_name'] ?></p></a>
 									</div>
 								</div>
 							</div>
 						</div>
+                        <h2><i><?php echo $kategori['category_name'] ?></i></h2>
 					</li>
-					<li>
-						<div class="ch-item ch-img-2">
-							<div class="ch-info-wrap">
-								<div class="ch-info">
-									<div class="ch-info-front ch-img-2"></div>
-									<div class="ch-info-back">
-										<h3>Kategoria</h3>
-										<a href="drame.php"><p>Drame</p></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="ch-item ch-img-3">
-							<div class="ch-info-wrap">
-								<div class="ch-info">
-									<div class="ch-info-front ch-img-3"></div>
-									<div class="ch-info-back">
-										<h3>Kategoria</h3>
-										<a href="poezi.php"><p>Poezi</p></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</section>
-			<section class="main">
-				<ul class="ch-grid">
-					<li>
-						<div class="ch-item ch-img-4">
-							<div class="ch-info-wrap">
-								<div class="ch-info">
-									<div class="ch-info-front ch-img-4"></div>
-									<div class="ch-info-back">
-										<h3>Kategoria</h3>
-										<a href="tragjedi.php"><p>Tragjedi</p></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="ch-item ch-img-5">
-							<div class="ch-info-wrap">
-								<div class="ch-info">
-									<div class="ch-info-front ch-img-5"></div>
-									<div class="ch-info-back">
-										<h3>Kategoria</h3>
-										<a href="letersiaRuse.php"><p>Letersia Ruse</p></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
-					<li>
-						<div class="ch-item ch-img-6">
-							<div class="ch-info-wrap">
-								<div class="ch-info">
-									<div class="ch-info-front ch-img-6"></div>
-									<div class="ch-info-back">
-										<h3>Kategoria</h3>
-										<a href="histori.php"><p>Roman Historik</p></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</li>
+                    <?php } ?>
 				</ul>
 			</section>
 
@@ -187,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div class="footer-bottom">
 		<div class="container">
-			<p>Â© 2015 Quickly. All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
+			<p>© 2018 All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
 		</div>
 	</div>
 <!-- //footer -->
