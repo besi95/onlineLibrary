@@ -10,11 +10,10 @@ if(isset($_COOKIE['registration_error'])) {
 <html>
 <head>
     <title>Regjistrohu</title>
+    <link rel="shortcut icon" type="image/png" href="images/icon.png"/>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="Adrion Library">
-    <meta name="author" content="Besim Saraci">
     <script type="application/x-javascript"> addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -28,6 +27,16 @@ if(isset($_COOKIE['registration_error'])) {
     <!-- js -->
     <script src="js/jquery-1.11.1.min.js"></script>
     <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
 </head>
 
 <body>
@@ -146,7 +155,7 @@ if(isset($_COOKIE['registration_error'])) {
                         </div>
                         <div class="sign-up2">
 
-                            <input type="text" name="email" placeholder=" " required=" "/>
+                            <input type="text" name="email" pattern="[a-zA-Z0-9!#$%&amp;'*+\/=?^_`{|}~.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*" placeholder=" " required=" "/>
 
                         </div>
                         <div class="clearfix"></div>
@@ -186,7 +195,7 @@ if(isset($_COOKIE['registration_error'])) {
 
 <div class="footer-bottom">
     <div class="container">
-        <p>© 2018  All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
+        <p>© 2018  All rights reserved | Design by <a href="#">Adrion Library</a></p>
     </div>
 </div>
 <!-- //footer -->

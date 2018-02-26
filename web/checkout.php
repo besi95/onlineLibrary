@@ -49,11 +49,10 @@ if (isset($_POST['submit'])) {
 <html>
 <head>
     <title>Checkout</title>
+    <link rel="shortcut icon" type="image/png" href="images/icon.png"/>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="Adrion Library">
-    <meta name="author" content="Besim Saraci">
     <script type="application/x-javascript"> addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -67,6 +66,16 @@ if (isset($_POST['submit'])) {
     <!-- js -->
     <script src="js/jquery-1.11.1.min.js"></script>
     <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
 </head>
 
 <body>
@@ -117,7 +126,7 @@ if (isset($_POST['submit'])) {
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-info">
-                            <div class="panel-heading">
+                            <div class="panel-heading" style="background-color: rgba(170,170,170,0.29)">
                                 <div class="panel-title">
                                     <div class="row" style="margin-top: 6px;">
                                         <div class="col-md-4">
@@ -169,7 +178,7 @@ if (isset($_POST['submit'])) {
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-footer">
+                            <div class="panel-footer" style="background-color: rgba(170,170,170,0.29)">
                                 <div class="row text-center">
                                     <div class="col-xs-9">
                                         <h4 class="text-right">Totali:
@@ -194,5 +203,10 @@ if (isset($_POST['submit'])) {
 <!-- for bootstrap working -->
 <script src="js/bootstrap.js"></script>
 <!-- //for bootstrap working -->
+<div class="footer-bottom">
+    <div class="container">
+        <p>© 2018 All rights reserved | Design by <a href="#"> Adrion Library</a></p>
+    </div>
+</div>
 </body>
 </html>

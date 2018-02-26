@@ -15,8 +15,8 @@ $users = $conn->query($userSql);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adrion Library">
-    <meta name="author" content="Besim Saraci">
+    <meta name="description" content="">
+    <link rel="shortcut icon" type="image/png" href="../web/images/icon.png"/>
 
     <title>LIBRARIA-Menaxho Perdorues</title>
 
@@ -33,14 +33,6 @@ $users = $conn->query($userSql);
     <link href="assets/css/style-responsive.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
-
-    <script src="assets/js/chart-master/Chart.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -177,10 +169,10 @@ $users = $conn->query($userSql);
                                                     <td><?php echo $user['lastname'] ?></td>
                                                     <td><?php echo $user['username'] ?></td>
                                                     <td><?php echo $user['email']?></td>
-                                                    <td><?php echo $user['is_approved']== '1'?'Aprovuar':'Pa-Aprovuar' ?></td>
+                                                    <td><?php echo $user['is_approved']== '1'?"<span class='label label-success'>Aprovuar</span>":"<span class='label label-danger'>Pa-Aprovuar</span>" ?></td>
                                                     <td align="center">
-                                                        <a href="src/aprovoUser.php?userId=<?php echo $user['id'] ?>" class="btn btn-default"><em alt="" class="fa fa-check"></em></a>
-                                                        <a href="src/fshiUser.php?userId=<?php echo $user['id'] ?>" class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                                        <a href="src/aprovoUser.php?userId=<?php echo $user['id'] ?>" class="btn btn-default"><em alt="" class="fa fa-check"> Aprovo</em></a>
+                                                        <a href="src/fshiUser.php?userId=<?php echo $user['id'] ?>" class="btn btn-danger"><em class="fa fa-trash"> Fshi</em></a>
                                                     </td>
                                                 </tr>
                                                 <?php }?>

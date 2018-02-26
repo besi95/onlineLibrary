@@ -1,9 +1,6 @@
 <?php
 include "db_connect.php";
 
-/**
- * merr parametrat e postuara nga forma
- */
 $name = $email = $lastname = $username = $password = $ditelindja = "";
 $errors = array();
 
@@ -52,12 +49,6 @@ if (isset($_POST['ditelindja'])) {
     $errors[] = 'Ju lutem vendosni ditelindjen!';
 }
 
-$kontrolloSql = "SELECT * from user WHERE email = '{$email}'";
-$kontrolli= $conn->query($kontrolloSql);
-if($kontrolli->num_rows > 0){
-    $errors[] = 'Perdorues me kete email ekziston!';
-}
-
 if (count($errors) > 0) {
     setcookie('registration_error', json_encode($errors), time() + 3600, '/');
     header('Location: ../register.php');
@@ -70,16 +61,11 @@ if (count($errors) > 0) {
     $result = $conn->query($query);
 
 
-    /**
-     * perdoruesi u regjistrua me sukses
-     */
+
     if ($result == TRUE ) {
         setcookie('registration_success', 'Perdoruesi u krijua me sukses!', time() + 3600, '/');
         header('Location: ../login.php');
     } else {
-        /**
-         * regjistrimi nuk mund te kryhet
-         */
         $errors[] = "Regjistrimi nuk mund te kryhet. Ju lutem kontakti administratorin e faqes.";
         setcookie('registration_error', json_encode($errors), time() + 3600, '/');
         header('Location: ../registration.php');

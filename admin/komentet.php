@@ -16,8 +16,8 @@ $komentet = $conn->query($komentSql);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adrion Library">
-    <meta name="author" content="Besim Saraci">
+    <meta name="description" content="">
+    <link rel="shortcut icon" type="image/png" href="../web/images/icon.png"/>
 
     <title>LIBRARIA-Komentet</title>
 
@@ -34,14 +34,6 @@ $komentet = $conn->query($komentSql);
     <link href="assets/css/style-responsive.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
-
-    <script src="assets/js/chart-master/Chart.js"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
@@ -164,7 +156,7 @@ $komentet = $conn->query($komentSql);
                                         <thead>
                                         <tr>
                                             <th class="hidden-xs">NR #</th>
-                                            <th>Permbajtja</th>
+                                            <th width="300px">Permbajtja</th>
                                             <th>Libri</th>
                                             <th>Emri Userit</th>
                                             <th>Email</th>
@@ -182,8 +174,8 @@ $komentet = $conn->query($komentSql);
                                             <td><?php echo $koment['email']?></td>
                                             <td><?php echo $koment['approved']=='1'? "<span class='label label-success'>Aprovuar</span>": "<span class='label label-danger'>Pa-Aprovuar</span>"?></td>
                                             <td align="center">
-                                                <a href="src/aprovoKoment.php?komentId=<?php echo $koment['nr']?>" class="btn btn-default"><em alt="" class="fa fa-check"></em></a>
-                                                <a href="src/fshiKoment.php?komentId=<?php echo $koment['nr'] ?>" class="btn btn-danger"><em class="fa fa-trash"></em></a>
+                                                <a href="src/aprovoKoment.php?komentId=<?php echo $koment['nr']?>" class="btn btn-default"><em alt="" class="fa fa-check"></em> Aprovo</a>
+                                                <a href="src/fshiKoment.php?komentId=<?php echo $koment['nr'] ?>" class="btn btn-danger"><em class="fa fa-trash"></em> Fshi</a>
                                             </td>
                                         </tr>
                                         <?php } ?>

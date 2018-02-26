@@ -2,10 +2,6 @@
 include "db_connect.php";
 
 $emri = $mbiemri = $email = $username = $ditelindja = $password = $confirmPassword = "";
-
-/**
- * merr parametrat e postuara te formes
- */
 $emri = $_POST['emri'];
 $mbiemri = $_POST['mbiemri'];
 $email = $_POST['email'];
@@ -20,9 +16,6 @@ if (isset($_POST['submit'])) {
         $errors[] = 'Passwordi duhet te jete i njejte me konfirmimin!';
     } else {
         $password = md5($password);
-        /**
-         * query per editimin e userit
-         */
         $editSql = "UPDATE user SET
                     name ='{$emri}',
                     lastname='{$mbiemri}',
@@ -33,18 +26,11 @@ if (isset($_POST['submit'])) {
         $result = $conn->query($editSql);
 
     }
-    /**
-     * editimi u krye me sukses
-     */
     if ($result) {
         $errors[] = "Perdoruesi u editua me sukses!";
         setcookie('editim_result', json_encode($errors), time() + 3600, '/');
         header('Location: ../profili.php');
-    }
-    /**
-     * editimi ka error
-     */
-    else {
+    } else {
         $errors[] = "Editimi nuk mund te kryhet!";
         setcookie('editim_result', json_encode($errors), time() + 3600, '/');
         header('Location: ../profili.php');

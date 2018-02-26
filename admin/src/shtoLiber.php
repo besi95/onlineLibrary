@@ -2,33 +2,28 @@
 
 include "db_connect.php";
 
-/**
- * uploado imazhin e librit
- */
 $uploadImazhin = uploadImazhin();
 
-/**
- * merr parametrat e postuara nga forma
- */
+
 $titulli = $shtepiaBotuese = $kategoria = $pershkrimi = $autori = $cmimi = $stoku = "";
 $titulli = $_POST['titulli'];
 $shtepiaBotuese = $_POST['shtepia-botuese'];
 $kategoria = $_POST['kategoria'];
-$pershkrimi = $_POST['pershkrimi'];
+$pershkrimi = mysql_real_escape_string($_POST['pershkrimi']);
 $autori = $_POST['autori'];
 $cmimi = $_POST['cmimi'];
 $stoku = $_POST['stoku'];
 $image = $_FILES["imazhi"]["name"];
 $errors = array();
-/**
- * shto librin ne database
- */
+
 $shtoQuery = "INSERT INTO `liber` (`title`, `category`, `publisher`,
               `description`, `price`, `liber_image`, `stock`) VALUES 
               ('{$titulli}', '{$kategoria}', '{$shtepiaBotuese}',
                '{$pershkrimi}', '{$cmimi}', '{$image}', '{$stoku}');";
 
 $result = $conn->query($shtoQuery);
+var_dump($shtoQuery);
+die();
 $lastIdSql = "SELECT id FROM liber ORDER BY id DESC LIMIT 1";
 $lastId = $conn->query($lastIdSql);
 $lastId = $lastId->fetch_assoc();
@@ -36,9 +31,6 @@ $lastId = $lastId['id'];
 
 editoAutoret($autori, $lastId, $conn);
 
-/**
- * case kur query u ekzekutua me sukses
- */
 if ($result) {
     $uploadStatus = uploadImazhin();
     if ($uploadStatus == false) {
@@ -54,10 +46,6 @@ if ($result) {
 }
 
 
-/**
- * @return bool
- * funksioni i upload te imazhit
- */
 function uploadImazhin()
 {
 
@@ -65,11 +53,15 @@ function uploadImazhin()
     $target_file = $target_dir . basename($_FILES["imazhi"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-// kontrollo sizen e imazhit
+// Check if file already exists
+    if (file_exists($target_file)) {
+        return false;
+    }
+// Check file size
     if ($_FILES["imazhi"]["size"] > 500000) {
         return false;
     }
-// lejo formate te caktuara imazhesh
+// Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif") {
         return false;

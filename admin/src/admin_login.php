@@ -2,9 +2,6 @@
 include "db_connect.php";
 
 $email = $password = "";
-/**
- * merr parametrat e postuara
- */
 if(isset($_POST['submit'])){
     if(isset($_POST['email'])){
         $email = $_POST['email'];
@@ -25,9 +22,6 @@ if(isset($_POST['submit'])){
         header('Location: ../login.php');
     }else{
         $user= $result->fetch_assoc();
-        /**
-         * kredencialet e sakta, nis sesionin
-         */
         session_start();
         $_SESSION['admin_logged_in'] = 1;
         $_SESSION['admin_email'] = $user['email'];

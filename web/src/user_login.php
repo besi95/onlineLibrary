@@ -1,9 +1,6 @@
 <?php
 include "db_connect.php";
 
-/**
- * merr parametrat e postuara
- */
 $email = $password = "";
 if(isset($_POST['submit'])){
     if(isset($_POST['email'])){
@@ -17,17 +14,11 @@ if(isset($_POST['submit'])){
         setcookie('usr_login_error','Ju lutem vendosni passwordin.');
     }
 
-    /**
-     * shiko nese useri ekziston ne database
-     */
     $query = "SELECT * FROM user WHERE email='{$email}' AND password='{$password}' AND role='0'";
     $result = $conn->query($query);
     $user = $result->fetch_assoc();
     $isApproved = $user['is_approved'];
 
-    /**
-     * useri nuk ekziston me keto kredenciale
-     */
     if ($result->num_rows < 1) {
         setcookie('usr_login_error','Kredencialet jane te gabuara.',time()+3600,'/');
         header('Location: ../login.php');
@@ -35,9 +26,6 @@ if(isset($_POST['submit'])){
         setcookie('usr_login_error','Ju nuk jeni aprovuar akoma nga administratori i librarise.',time()+3600,'/');
         header('Location: ../login.php');
     }else{
-        /**
-         * login me sukses
-         */
         session_start();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['usr_logged_in'] = 1;

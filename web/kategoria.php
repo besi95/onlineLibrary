@@ -6,35 +6,15 @@ $kategorySql = "SELECT * FROM `categories` WHERE id= '{$katId}'";
 $result = $conn->query($kategorySql);
 $titleKat = $result->fetch_assoc();
 $titleKat = $titleKat['category_name'];
-
-$liberSql = "SELECT * FROM liber
-              WHERE liber.category='{$katId}'";
-$libra = $conn->query($liberSql);
-
-function gjejAutoret($liberId,$conn){
-    $autorSql = "SELECT concat(firstname,' ',lastname) AS  emer FROM autor_liber
-              INNER JOIN autor ON autor.id = autor_liber.autor_id
-              WHERE autor_liber.liber_id = '{$liberId}'";
-    $autor =$conn->query($autorSql);
-
-    $autoret =array();
-
-    while($autori = $autor->fetch_assoc()){
-        $autoret[] = $autori['emer'];
-    }
-    return $autoret;
-}
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?php echo $titleKat?></title>
+    <link rel="shortcut icon" type="image/png" href="images/icon.png"/>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Adrion Library">
-    <meta name="author" content="Besim Saraci">
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
         function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //for-mobile-apps -->
@@ -43,6 +23,16 @@ function gjejAutoret($liberId,$conn){
     <!-- js -->
     <script src="js/jquery-1.11.1.min.js"></script>
     <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
 </head>
 
 <body>
@@ -95,26 +85,6 @@ function gjejAutoret($liberId,$conn){
             <h1 class="custom-header-kat"><?php echo $titleKat?></h1>
             <div class="banner-bottom">
                 <div class="row liber-faqe">
-                    <?php while ($liber = $libra->fetch_assoc()){?>
-                    <div class="col-md-3 liber-item">
-                        <img style=";height: 300px;padding-left: 10%" src="../admin/imazhe/<?php echo $liber['liber_image']?>" alt=" " class="img-responsive" />
-                        <br>
-                        <p style="text-align: justify;"><b><span class="styled-title"><?php echo $liber['title']?></span></b></br>
-                            <?php echo substr($liber['description'],0,200).' ...<br>'?>
-                            </br>
-                            <b>Cmimi: </b><?php echo $liber['price'].'$'?><br>
-                            <b>Shtepia Botuese:</b><?php echo $liber['publisher']?><br>
-                            <b>Autor: </b><?php $autoretLiber = gjejAutoret($liber['id'],$conn);
-                            foreach($autoretLiber as $autori){
-                                echo $autori. ' ';
-                            }
-                            ?>
-                        </p><br><br>
-                        <div style="margin:0" class="more">
-                            <a href="single.php?bookId=<?php echo $liber['id']?>" class="hvr-bounce-to-bottom sint">Shiko Librin </a>
-                        </div>
-                    </div>
-                    <?php } ?>
                 </div>
 
                 <script type="text/javascript">
@@ -149,19 +119,31 @@ function gjejAutoret($liberId,$conn){
         </div>
     </div>
 
-
-
-
-            <!-- footer --z>
-
-
-            <!-- //footer -->
             <!-- for bootstrap working -->
             <script src="js/bootstrap.js"> </script>
             <!-- //for bootstrap working -->
             <div class="footer-bottom">
                 <div class="container">
-                    <p>© 2018 All rights reserved | Design by <a href="/sie/web/index.html"> Adrion Library</a></p>
+                    <p>© 2018 All rights reserved | Design by <a href="#"> Adrion Library</a></p>
                 </div>
 </body>
 </html>
+<head>
+    <script>
+        function getresult(url) {
+            $.ajax({
+                url: url,
+                type: "GET",
+                data:  {rowcount:$("#rowcount").val(),katId:<?php echo $katId?>},
+                success: function(data){
+                    $(".liber-faqe").html(data);
+                },
+                error: function()
+                {}
+            });
+        }
+    </script>
+    <script>
+        getresult("../pagination/getresult.php");
+    </script>
+</head>

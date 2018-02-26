@@ -23,11 +23,10 @@ $result5 = $conn->query($liber5Sql);
 <html>
 <head>
     <title>Adrion Library</title>
+    <link rel="shortcut icon" type="image/png" href="images/icon.png"/>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="Adrion Library">
-    <meta name="author" content="Besim Saraci">
     <script type="application/x-javascript"> addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -41,6 +40,16 @@ $result5 = $conn->query($liber5Sql);
     <!-- js -->
     <script src="js/jquery-1.11.1.min.js"></script>
     <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
 </head>
 
 <body>
@@ -69,9 +78,9 @@ $result5 = $conn->query($liber5Sql);
                             <li class="hvr-bounce-to-bottom active"><a href="index.php">Home</a></li>
                             <li class="hvr-bounce-to-bottom"><a href="about.php">Rreth Nesh</a></li>
                             <li class="hvr-bounce-to-bottom"><a href="portfolio.php">Kategorite</a></li>
-                            <?php if(isset($_SESSION['usr_logged_in'])){?>
+                            <?php if (isset($_SESSION['usr_logged_in'])) { ?>
                                 <li class="hvr-bounce-to-bottom"><a href="blerjet.php">Blerjet e Mia</a></li>
-                            <?php }?>
+                            <?php } ?>
                             <li class="hvr-bounce-to-bottom"><a href="contact.php">Kontakt</a></li>
                         </ul>
                         <div class="sign-in">
@@ -136,8 +145,10 @@ $result5 = $conn->query($liber5Sql);
                         <li>
                             <div class="banner-inf">
                                 <h3>Lehtesi</h3>
-                                <p>Nje nga zgjidhjet me te mira per te kaluar kohen tuaj te lire. </br> Zgjidhni librat
-                                    Adrion.</p>
+                                <p><strong>Adrion</strong>- Nje nga zgjidhjet me te mira per te kaluar kohen tuaj te
+                                    lire. </br> Zgjidhni librat
+                                    me te fundit ne Adrion dhe sdo te mbeteni te zhgenjyer. Tek ne do te gjeni libra
+                                    te kategorive te ndryshme dhe me nje dergese tek ju ne kohe rekord.</p>
 
                             </div>
                         </li>
@@ -163,12 +174,11 @@ $result5 = $conn->query($liber5Sql);
                     <?php while ($libri = $result->fetch_assoc()) { ?>
                         <li>
                             <div class="banner-bottom-grid">
-                                <img src="../admin/imazhe/<?php echo $libri['liber_image'] ?>" alt=" " width="190px"
-                                     height="286px"/>
-                                <p style="text-align: justify"><?php echo $libri['description'] ?>
-                                    <span class="styled-title"
-                                          style="margin-bottom: 25px;display: block; padding-left: 20px"><b><?php echo $libri['title'] ?></b></span>
-                                </p>
+                                <img class="img-rounded" src="../admin/imazhe/<?php echo $libri['liber_image'] ?>"
+                                     alt=" " width="190px" height="286px"/>
+                                <p style="text-align: justify"><?php echo substr($libri['description'],0,270).' ...' ?></p>
+                                <span class="styled-title"
+                                      style="margin-bottom: 25px;display: block"><b><i><?php echo $libri['title'] ?></i></b></span>
                                 <div class="more">
                                     <a href="single.php?bookId=<?php echo $libri['id'] ?>"
                                        style="width:200px; padding-top: 15px;"
@@ -211,7 +221,7 @@ $result5 = $conn->query($liber5Sql);
             <!-- blog -->
             <div class="blog">
                 <div class="blog-left">
-                    <blockquote class="quote-box">
+                    <blockquote class="quote-box quote-box2">
                         <p class="quotation-mark">
                             “
                         </p>
@@ -238,45 +248,36 @@ $result5 = $conn->query($liber5Sql);
                                 – John Green </p>
                         </div>
                     </blockquote>
-                    <blockquote class="quote-box quote-box3">
-                        <p class="quotation-mark">
-                            “
-                        </p>
-                        <p class="quote-text">
-                            Whenever you read a good book, somewhere in the world a door opens to allow in more
-                            light. </p>
-                        <hr>
-                        <div class="blog-post-actions">
-                            <p class="blog-post-bottom pull-left">
-                                – Vera Nazarian
-                            </p>
-                        </div>
-                    </blockquote>
                 </div>
                 <div class="blog-right">
                     <div class="sap_tabs">
                         <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                             <ul class="resp-tabs-list">
                                 <li class="resp-tab-item grid2" aria-controls="tab_item-1" role="tab">
-                                    <span>Te fundit</span></li>
+                                    <span>Sugjerime</span></li>
                                 <div class="clear"></div>
                             </ul>
                             <div class="resp-tabs-container">
                                 <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-                                    <?php while($item = $result5->fetch_assoc()){ ?>
-                                    <div class="facts">
-                                        <div class="tab_list">
-                                            <a href="../admin/imazhe/<?php echo $item['liber_image'] ?>" class="b-link-stripe b-animate-go   swipebox"
-                                               title="">
-                                                <img width="100px" src="../admin/imazhe/<?php echo $item['liber_image'] ?>" alt=" " class="img-responsive"/>
-                                            </a>
+                                    <?php while ($item = $result5->fetch_assoc()) { ?>
+                                        <div class="facts">
+                                            <div class="tab_list">
+                                                <a href="../admin/imazhe/<?php echo $item['liber_image'] ?>"
+                                                   class="b-link-stripe b-animate-go swipebox"
+                                                   title="">
+                                                    <img width="100px"
+                                                         src="../admin/imazhe/<?php echo $item['liber_image'] ?>"
+                                                         alt=" " class=" img-rounded"/>
+                                                </a>
+                                            </div>
+                                            <div class="tab_list1">
+                                                <a href="single.php?bookId=<?php echo $item['id'] ?>"><?php echo $item['title'] ?></a>
+                                                <p><?php echo $item['published_on'] ?>
+                                                    <span><?php echo substr($item['description'], 0, 100) . ' ...' ?></span>
+                                                </p>
+                                            </div>
+                                            <div class="clearfix"></div>
                                         </div>
-                                        <div class="tab_list1">
-                                            <a href="#"><?php echo $item['title']?></a>
-                                            <p><?php echo $item['published_on']?><span><?php echo substr($item['description'],0,100).' ...'?></span></p>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -318,7 +319,7 @@ $result5 = $conn->query($liber5Sql);
 <!-- //for bootstrap working -->
 <div class="footer-bottom">
     <div class="container">
-        <p>© 2018 All rights reserved | Design by <a href="/sie/web/index.php"> Adrion Library</a></p>
+        <p>© 2018 All rights reserved | Design by <a href="#"> Adrion Library</a></p>
     </div>
 </div>
 </body>

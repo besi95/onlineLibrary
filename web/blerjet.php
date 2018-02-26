@@ -21,11 +21,10 @@ $result = $conn->query($blerjeSql);
 <html>
 <head>
     <title>Adrion | Blerjet</title>
+    <link rel="shortcut icon" type="image/png" href="images/icon.png"/>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="Adrion Library">
-    <meta name="author" content="Besim Saraci">
     <script type="application/x-javascript"> addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -39,6 +38,15 @@ $result = $conn->query($blerjeSql);
     <!-- js -->
     <script src="js/jquery-1.11.1.min.js"></script>
     <!-- //js -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
 </head>
 
 <body>
@@ -86,7 +94,7 @@ $result = $conn->query($blerjeSql);
                 </nav>
             </div>
             <div class="container">
-                <div class="row">
+                <div class="row" style="min-height: 570px;">
                     <div class="col-md-12">
                         <div class="panel panel-info">
                             <center><h2 class="styled-title">Blerjet tuaja</h2></center>
@@ -130,7 +138,7 @@ $result = $conn->query($blerjeSql);
     </div>
     <div class="footer-bottom">
         <div class="container">
-            <p>© 2018 All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
+            <p>© 2018 All rights reserved | Design by <a href="#">Adrion Library</a></p>
         </div>
     </div>
 </div>

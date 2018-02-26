@@ -8,6 +8,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Adrion Library">
     <meta name="author" content="Besim Saraci">
+    <link rel="shortcut icon" type="image/png" href="../web/images/icon.png"/>
 
     <title>LIBRARIA-Shto Autor</title>
 
@@ -144,12 +145,12 @@ session_start();
         <section class="wrapper">
 
             <!--main content start-->
-            <h3><i class="fa fa-angle-right"></i> EDITO PROFILIN</h3>
+            <h3><i class="fa fa-angle-right"></i> SHTO AUTOR</h3>
             <div class="row mt">
                 <!-- left column -->
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="text-center">
-                        <img src="imazhe/writer.png" class="avatar img-circle img-thumbnail"
+                        <img src="imazhe/open-book-with-text-lines.png" class="avatar img-circle img-thumbnail"
                              alt="avatar">
                     </div>
                 </div>
@@ -168,15 +169,15 @@ session_start();
                             <div class="col-lg-8">
                                 <input class="form-control" name="mbiemri"  type="text" required>
                             </div>
-<br><br><br>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label"></label>
-                            <div class="col-md-8">
-                                <input class="btn btn-primary" value="Ruaj Autor" name="submit" type="submit">
-                                <span></span>
-                                <input class="btn btn-default" value="Anulo" type="reset">
+                            <br><br><br>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label"></label>
+                                <div class="col-md-8">
+                                    <input class="btn btn-primary" value="Ruaj Autor" name="submit" type="submit">
+                                    <span></span>
+                                    <input class="btn btn-default" value="Anulo" type="reset">
+                                </div>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>

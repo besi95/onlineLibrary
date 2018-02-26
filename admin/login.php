@@ -11,8 +11,8 @@ if(isset($_COOKIE['login_error'])){
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adrion Library">
-    <meta name="author" content="Besim Saraci">
+    <meta name="description" content="">
+    <link rel="shortcut icon" type="image/png" href="../web/images/icon.png"/>
 
     <title>LIBRARIA - LOGIN</title>
 

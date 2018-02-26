@@ -43,11 +43,10 @@ $komentet = $conn->query($komentSql);
 <html>
 <head>
     <title><?php echo $libri['title'] ?></title>
+    <link rel="shortcut icon" type="image/png" href="images/icon.png"/>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="Adrion Library">
-    <meta name="author" content="Besim Saraci">
     <script type="application/x-javascript"> addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
         }, false);
@@ -61,6 +60,16 @@ $komentet = $conn->query($komentSql);
     <!-- js -->
     <script src="js/jquery-1.11.1.min.js"></script>
     <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+    </script>
+    <!-- start-smoth-scrolling -->
 </head>
 
 <body>
@@ -115,7 +124,7 @@ $komentet = $conn->query($komentSql);
                 <div class="row">
                     <div class="col-md-5">
                         <h3><?php echo $libri['title'] ?></h3>
-                        <img class="img-responsive single-liber-img"
+                        <img class="img-rounded single-liber-img"
                              src="../admin/imazhe/<?php echo $libri['liber_image'] ?>" alt=" "/>
                     </div>
                     <div class="col-md-7 book-page">
@@ -197,7 +206,7 @@ $komentet = $conn->query($komentSql);
     <!-- footer -->
     <div class="footer-bottom">
         <div class="container">
-            <p>© 2018 All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
+            <p>© 2018 All rights reserved | Design by <a href="#">Adrion Library</a></p>
         </div>
     </div>
     <!-- //footer -->

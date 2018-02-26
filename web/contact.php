@@ -21,11 +21,10 @@ if(isset($_POST['submit']))
 <html>
 <head>
 <title>Contact</title>
+<link rel="shortcut icon" type="image/png" href="images/icon.png"/>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="Adrion Library">
-<meta name="author" content="Besim Saraci">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
@@ -34,6 +33,18 @@ if(isset($_POST['submit']))
 <!-- js -->
 <script src="js/jquery-1.11.1.min.js"></script>
 <!-- //js -->
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
 </head>
 
 <body>
@@ -79,6 +90,14 @@ if(isset($_POST['submit']))
 						</div><!-- /.navbar-collapse -->
 					</nav>
 				</div>
+
+			<!-- search-scripts -->
+			<script src="js/classie.js"></script>
+			<script src="js/uisearch.js"></script>
+				<script>
+					new UISearch( document.getElementById( 'sb-search' ) );
+				</script>
+			<!-- //search-scripts -->
 			</div>
 <!-- //header -->
 <!-- contact -->
@@ -130,7 +149,7 @@ if(isset($_POST['submit']))
 	</div>
 	<div class="footer-bottom">
 		<div class="container">
-			<p>© 2018 All rights reserved | Design by <a href="http://w3layouts.com/">Adrion Library</a></p>
+			<p>© 2018 All rights reserved | Design by <a href="#">Adrion Library</a></p>
 		</div>
 	</div>
 <!-- //footer -->

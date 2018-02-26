@@ -4,10 +4,6 @@ include "db_connect.php";
 
 
 $titulli = $shtepiaBotuese = $kategoria = $pershkrimi = $autori = $cmimi = $stoku = "";
-
-/**
- * merr parametrat e postuara nga forma
- */
 $liberId = $_POST['liber_id'];
 $oldImage = $_POST['old_image'];
 $titulli = $_POST['titulli'];
@@ -21,14 +17,16 @@ $image = $_FILES["imazhi"]["name"];;
 $errors = array();
 
 if($oldImage != $image){
-    $image = $oldImage;
     $uploadStatus = uploadImazhin();
+}else {
+    $image = $oldImage;
 }
+    if($image == ''){
+    $image = $oldImage;}
 
 
-/**
- * query per editimin e librit
- */
+
+
 $shtoQuery = "UPDATE liber SET
                title='{$titulli}',
                category='{$kategoria}',
@@ -45,29 +43,19 @@ $result = $conn->query($shtoQuery);
 
 editoAutoret($autoret, $liberId, $conn);
 
-/**
- * editimi u krye me sukses
- */
 if ($result) {
     $errors[] = "Libri u editua me sukses.";
     setcookie('editim_status', json_encode($errors), time() + 3600, '/');
     header('Location: ../editoLiber.php?liberId=' . $liberId);
 
-}
-/**
- * editimi ka error
- */
-else {
+} else {
     $errors[] = "Editimi i librit nuk mund te kryhet. Provoni perseri.";
     setcookie('editim_status', json_encode($errors), time() + 3600, '/');
     header('Location: ../editoLiber.php?liberId=' . $liberId);
 
 }
 
-/**
- * @return bool
- * uploado imazhin
- */
+
 function uploadImazhin()
 {
 
@@ -75,11 +63,11 @@ function uploadImazhin()
     $target_file = $target_dir . basename($_FILES["imazhi"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-// Kontrollo madhesine e imazhit
+// Check file size
     if ($_FILES["imazhi"]["size"] > 500000) {
         return false;
     }
-// Lejo vetem formate te caktuara imazhi
+// Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif") {
         return false;
